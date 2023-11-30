@@ -6,7 +6,9 @@ import java.util.Scanner;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -18,7 +20,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -43,8 +47,8 @@ public class ProductPage{
 		//Image
 		ImageView pImgView = new ImageView();
 		pImgView.setImage(pImage);
-		pImgView.setFitHeight(400);
-		pImgView.setFitWidth(400);
+		pImgView.setFitHeight(700);
+		pImgView.setFitWidth(700);
 		pImgView.setPreserveRatio(true);
 		
 		//Desc
@@ -55,11 +59,31 @@ public class ProductPage{
 		//Title
 		Label pTitleLabel = new Label(pTitle);
 		
-		//Layout
-		HBox hbox = new HBox(20, pImgView, pDescText);
-		VBox vbox = new VBox(20, pTitleLabel, hbox);
+		//Buttons
+		Button detailsBtn = new Button("Product Details");
+		Button buyBtn = new Button("Buy Now");
 		
-		Scene scene = new Scene(vbox,1000,1000);
+		//Layout
+		GridPane mainGp = new GridPane();
+		mainGp.add(pTitleLabel, 0, 0);
+		mainGp.add(pDescText, 1, 1);
+		mainGp.add(pImgView, 0, 1);
+		GridPane.setRowSpan(pImgView, 2);
+		HBox buttons = new HBox(20, detailsBtn, buyBtn);
+		buttons.setAlignment(Pos.CENTER);
+		mainGp.add(buttons, 1, 2);
+		mainGp.setGridLinesVisible(true);
+		mainGp.setAlignment(Pos.CENTER);
+		
+		Scene scene = new Scene(mainGp,1000,1000);
+		Button test = new Button("Test");
+		Pane pane = new Pane(test);
+		buyBtn.setOnAction(event -> {
+			scene.setRoot(pane);
+		});
+		test.setOnAction(event -> {
+			scene.setRoot(mainGp);
+		});
 		
 		return scene;
 	}
