@@ -1,4 +1,4 @@
-package application;
+package com.example.testing3;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,6 +7,7 @@ import java.util.Scanner;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -25,6 +26,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 public class ProductPage{
 	public static Scene getProductPage(String filename) {
@@ -34,9 +36,9 @@ public class ProductPage{
 		String pDescription = null;
 		String pTitle = null;
 		try {
-			Scanner scanner = new Scanner(new File("src/application/products/" + filename));
+			Scanner scanner = new Scanner(new File("cs2450-test/products/" + filename));
 			pTitle = scanner.nextLine();
-			pImage = new Image("file:src/application/images/" + scanner.nextLine());
+			pImage = new Image("file:cs2450/images/" + scanner.nextLine());
 			pDescription = scanner.nextLine();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -45,8 +47,7 @@ public class ProductPage{
 		//Menu bar
         MenuBar mb = new MenuBar();
         
-        // Home Menu
-        Menu home = new Menu("Home");
+
 		// create the equipments menu
         Menu equipment = new Menu("Equipment");
         MenuItem item2 = new MenuItem("Small Animal immobilizers");
@@ -65,7 +66,10 @@ public class ProductPage{
         
         //create order form menu
         Menu form = new Menu("Order Form");
-        
+
+		// Home Menu
+		Menu home = new Menu("Home");
+
         mb.getMenus().addAll(home, equipment, supplies, parts, form);
         mb.setPadding(new Insets(10));
 		//Image
