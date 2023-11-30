@@ -92,8 +92,6 @@ public class Main extends Application {
             stage.setScene(ProductPage.getProductPage("full_overlap_apron.txt"));
         });
 
-
-
         search.setPromptText("Search");
         search.setPrefWidth(775);
         search.setPrefHeight(58);
@@ -166,26 +164,10 @@ public class Main extends Application {
         // create a hbox for the images]\
         mostPopularSection.getChildren().addAll(mostPopular, rightButton, imageView, leftButton);
 
-        // browse all products
-        Label browse = new Label("Browse all products");
-        Button leadApron = new Button("Lead Apron");
-        Button gloves = new Button("Radiation reducing gloves");
-        Button mri = new Button("Medium MRI Phantom");
-        Button animalImmobilizers = new Button("Small Animal Immobilizers");
+        // browse all products section
+        Label browse = new Label("Browse all Products");
 
 
-        // background image
-        /*
-        Image background = new Image("file:res/background.jpeg");
-        ImageView backImage = new ImageView(background);
-
-        backImage.fitWidthProperty().bind(stage.widthProperty());
-        backImage.fitHeightProperty().bind(stage.heightProperty());
-
-        backImage.setPreserveRatio(true);
-        backImage.setSmooth(true);
-
-         */
         Image img = new Image("file:res/background.jpeg");
         BackgroundSize bgSize = new BackgroundSize(100, 100, true, true, true, true);
         BackgroundImage bgImg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT,
