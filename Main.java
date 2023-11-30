@@ -1,5 +1,7 @@
-package com.example.testing3;
+package application;
 
+
+import java.util.Scanner;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -8,11 +10,19 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import java.io.*;
+
 public class Main extends Application {
     int currentIndex =0;
 
