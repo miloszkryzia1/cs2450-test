@@ -13,6 +13,11 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.*;
 import javafx.scene.paint.ImagePattern;
 import javafx.stage.Stage;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class Main extends Application {
     int currentIndex =0;
 
@@ -104,6 +109,11 @@ public class Main extends Application {
         searchButton.getStyleClass().add("button-search");
         // -fx-background-color: linear-gradient(to bottom, #cccccc, #999999);
 
+        //TEST - TEPORARY
+        searchButton.setOnAction(event -> {
+            getProductPage("glove.txt", stage);
+        });
+
 
         // most popular section
         Label mostPopular = new Label("Most Popular");
@@ -183,6 +193,93 @@ public class Main extends Application {
 
         // return the vbox, FIX LATER
         return home;
+    }
+    /**
+     * Sets the stage's scene to specified product's page
+     * @param filename Product's text file with data
+     * @param stage Current stage
+     */
+    public static void getProductPage(String filename, Stage stage) {
+
+        //get data
+        Image pImage = null;
+        String pDescription = null;
+        String pTitle = null;
+        try {
+            Scanner scanner = new Scanner(new File("src/application/products/" + filename));
+            pTitle = scanner.nextLine();
+            pImage = new Image("file:src/application/images/" + scanner.nextLine());
+            pDescription = scanner.nextLine();
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        //Menu bar
+        MenuBar mb = new MenuBar();
+
+        // Home Menu
+        Menu home = new Menu("Home");
+        // create the equipments menu
+        Menu equipment = new Menu("Equipment");
+        MenuItem item2 = new MenuItem("Small Animal immobilizers");
+        equipment.getItems().addAll(item2);
+
+        // create supplies menu
+        Menu supplies = new Menu("Supplies");
+        MenuItem item3 = new MenuItem("Lead Apron");
+        MenuItem item4 = new MenuItem("Radiation Reducing Gloves");
+        supplies.getItems().addAll(item3, item4);
+
+        // create the parts menu
+        Menu parts = new Menu("Parts");
+        MenuItem MRI2 = new MenuItem("MRI");
+        parts.getItems().addAll(MRI2);
+
+        //create order form menu
+        Menu form = new Menu("Order Form");
+
+        mb.getMenus().addAll(home, equipment, supplies, parts, form);
+        mb.setPadding(new Insets(10));
+        //Image
+        ImageView pImgView = new ImageView();
+        pImgView.setImage(pImage);
+        pImgView.setFitHeight(700);
+        pImgView.setFitWidth(700);
+        pImgView.setPreserveRatio(true);
+
+        //Desc
+        Label pDescText = new Label(pDescription);
+        pDescText.setPrefSize(400, 400);
+        pDescText.setWrapText(true);
+
+        //Title
+        Label pTitleLabel = new Label(pTitle);
+
+        //inline for Title
+        pTitleLabel.setStyle("-fx-font-size: 18pt; -fx-font-weight: bold");
+        //Button
+        Button p_details = new Button("Product Details");
+        Button buy_button = new Button("buy Now!");
+        //Layout
+        HBox buttonBox = new HBox(20, p_details, buy_button);
+        buttonBox.setAlignment(Pos.CENTER);
+        VBox vbox1 = new VBox(20, pDescText, buttonBox);
+        vbox1.setAlignment(Pos.TOP_RIGHT);
+        HBox hbox1 = new HBox(20, pImgView, vbox1);
+        hbox1.setAlignment(Pos.CENTER);
+        VBox vbox2 = new VBox(20, pTitleLabel, hbox1);
+        vbox2.setAlignment(Pos.CENTER);
+        VBox vbox3 = new VBox(25,mb, vbox2);
+        vbox3.setAlignment(Pos.TOP_LEFT);
+        //HBox hbox = new HBox(30, pImgView, pDescText);
+        //VBox vbox = new VBox(20, pTitleLabel, hbox);
+
+
+        Scene scene = new Scene(vbox3);
+        stage.setScene(scene);
+        stage.setFullScreen(true);
+        stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);  // ctrl esc
+        stage.setResizable(true);
     }
 }
 
