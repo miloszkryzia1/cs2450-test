@@ -1,0 +1,3 @@
+Pro-MRI - ACR accredited Medium MRI phantom
+MRI.png
+ACR accredited Medium MRI phantom for comprehensive evaluation of critical imaging parameters of magnetic resonance imaging (MRI) in a time efficient manner. The phantom can be used for the measurement of absolute values for calibration purposes. However, its design is optimized for time efficient daily.
