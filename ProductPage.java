@@ -34,10 +34,9 @@ public class ProductPage{
 		String pDescription = null;
 		String pTitle = null;
 		try {
-    		String filePath = System.getProperty("user.dir");
-			Scanner scanner = new Scanner(new File("src/products/" + filename));
+			Scanner scanner = new Scanner(new File("src/application/products/" + filename));
 			pTitle = scanner.nextLine();
-			pImage = new Image("file:src/Images/" + scanner.nextLine());
+			pImage = new Image("file:src/application/images/" + scanner.nextLine());
 			pDescription = scanner.nextLine();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
