@@ -1,8 +1,11 @@
 package application;
 
+import java.util.Scanner;
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -13,6 +16,8 @@ import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import java.io.*;
+
 public class Main extends Application {
     Label response;
 
@@ -98,6 +103,14 @@ public class Main extends Application {
         // testing
         BorderPane root = new BorderPane();
         root.setTop(mb);
+        
+        //for testing
+        Button btn = new Button("Test");
+        btn.setOnAction(event -> {
+        	stage.setScene(ProductPage.getProductPage("full_overlap_apron.txt"));
+        });
+        root.setCenter(btn);
+        
         Scene scene = new Scene(root, 600, 600);
         //Scene scene = new Scene(window1(stage));
         stage.setScene(scene);
