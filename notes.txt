@@ -1,3 +1,0 @@
-- make product details page (changing root of scene returned in getProductPage)
-- add product detail data to text files
-- check best way to implement navigation
