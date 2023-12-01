@@ -1,4 +1,4 @@
-package com.example.testing3;
+package application;
 
 import java.util.Scanner;
 
@@ -19,6 +19,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import java.io.*;
+import javafx.scene.Parent;
 
 public class Main extends Application {
     int currentIndex =0;
@@ -108,6 +109,11 @@ public class Main extends Application {
         searchButton.getStyleClass().add("button-search");
         // -fx-background-color: linear-gradient(to bottom, #cccccc, #999999);
 
+        //FOR TESTS
+        searchButton.setOnAction(event -> {
+        	getDetailsPage(stage);
+        });
+        
 
         // most popular section
         Label mostPopular = new Label("Most Popular");
@@ -292,6 +298,20 @@ public class Main extends Application {
 		stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);  // ctrl esc
         stage.setResizable(true);
 	}
+    
+    public static void getDetailsPage(Stage stage) {
+    	Button backBtn = new Button("Back");
+    	Parent content = Table.getCollimatorTable();
+    	VBox vbox = new VBox(20, content, backBtn);
+    	vbox.setAlignment(Pos.CENTER);
+    	Scene scene = new Scene(vbox);
+    	stage.setScene(scene);
+		stage.setFullScreen(true);
+		stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH); // ctrl esc
+		stage.setResizable(true);
+		 
+		 
+    }
 }
 
 
