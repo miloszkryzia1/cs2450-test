@@ -35,7 +35,7 @@ public class Main extends Application {
         stage.setResizable(true);
         stage.show();
     }
-    public VBox homePage(Stage stage){
+    public BorderPane homePage(Stage stage){
 
         MenuBar menuBar = new MenuBar();
 
@@ -92,11 +92,6 @@ public class Main extends Application {
         searchBox.setSpacing(10);
         searchBox.setPadding(new Insets(30,0,0, 0));
 
-        // testing
-        searchButton.setOnAction(event -> {
-            stage.setScene(ProductPage.getProductPage("full_overlap_apron.txt"));
-        });
-
         search.setPromptText("Search");
         search.setPrefWidth(775);
         search.setPrefHeight(58);
@@ -126,18 +121,18 @@ public class Main extends Application {
         images[3] = new Image("file:./res/test4.png");
         ImageView imageView = new ImageView(images[0]);
         imageView.setFitWidth(200);
-        imageView.setFitHeight(400);
+        imageView.setFitHeight(200);
         imageView.setPreserveRatio(true);
 
         // most popular label
-        AnchorPane.setTopAnchor(mostPopular,50.0);
-        AnchorPane.setLeftAnchor(mostPopular,700.0);
+        AnchorPane.setTopAnchor(mostPopular,40.0);
+        AnchorPane.setLeftAnchor(mostPopular,690.0);
         // create the anchorPane
         AnchorPane mostPopularSection = new AnchorPane();
 
         // set contraints for imageView
-        AnchorPane.setTopAnchor(imageView, 200.0);
-        AnchorPane.setLeftAnchor(imageView, 600.0); // change later
+        AnchorPane.setTopAnchor(imageView, 80.0);
+        AnchorPane.setLeftAnchor(imageView, 650.0);
 
         // create buttons on each side of the image
         Button leftButton = new Button("<");
@@ -146,9 +141,9 @@ public class Main extends Application {
         rightButton.setStyle("-fx-font-size: 10; -fx-text-fill: white; -fx-background-color: black;");
         // Position the buttons
         AnchorPane.setTopAnchor(leftButton, 150.0);
-        AnchorPane.setLeftAnchor(leftButton, 500.0);
+        AnchorPane.setLeftAnchor(leftButton, 580.0);
         AnchorPane.setTopAnchor(rightButton, 150.0);
-        AnchorPane.setRightAnchor(rightButton, 500.0);
+        AnchorPane.setRightAnchor(rightButton, 600.0);
 
         leftButton.setOnAction(event -> {
             // Decrement the current index
@@ -161,7 +156,7 @@ public class Main extends Application {
             imageView.setImage(images[currentIndex]);
         });
 
-        rightButton.setOnAction(e -> {
+        rightButton.setOnAction(event -> {
             // Increment the current index
             currentIndex++;
             // Wrap around if the index is out of bounds
@@ -175,7 +170,77 @@ public class Main extends Application {
         mostPopularSection.getChildren().addAll(mostPopular, rightButton, imageView, leftButton);
 
         // browse all products section
-        Label browse = new Label("Browse all Products");
+        Label browse = new Label("Browse all products");
+        //HBox browseBox = new HBox(browse);
+        //browseBox.setAlignment(Pos.CENTER);
+        browse.setAlignment(Pos.CENTER);
+        browse.setPadding(new Insets(100,0,0,4));
+        browse.setStyle("-fx-font-size: 16; -fx-text-fill: white");
+
+        VBox firstRow = new VBox();
+        ImageView leadApron = new ImageView(new Image("file:./res/test.png"));
+        leadApron.setFitWidth(100);
+        leadApron.setFitHeight(100);
+        imageView.setPreserveRatio(true);
+
+        ImageView mediumMRI = new ImageView(new Image("file:./res/test2.png"));
+        mediumMRI.setFitWidth(100);
+        mediumMRI.setFitHeight(100);
+        imageView.setPreserveRatio(true);
+
+        Label lead = new Label("Lead Aprons");
+        lead.getStyleClass().add("browse-lead");
+        Label phantom = new Label("Medium MRI Phantom");
+        phantom.setStyle("-fx-underline: true");
+        phantom.getStyleClass().add("browse-MRI");
+
+        firstRow.getChildren().addAll(leadApron, lead,mediumMRI, phantom);
+        firstRow.setSpacing(15);
+        firstRow.setAlignment(Pos.CENTER);
+
+        VBox secondRow = new VBox();
+        // third image
+        ImageView gloveImage = new ImageView(new Image("file:./res/test3.png"));
+        gloveImage.setFitWidth(100);
+        gloveImage.setFitHeight(100);
+        imageView.setPreserveRatio(true);
+
+        // fourth image
+        ImageView animalImage = new ImageView(new Image("file:./res/test4.png"));
+        animalImage.setFitWidth(100);
+        animalImage.setFitHeight(100);
+        animalImage.setPreserveRatio(true);
+
+        Label radiationGloves = new Label("Radiation Reducing gloves");
+        Label smallAnimalLabel = new Label("Small Animal Immobilizers");
+
+        radiationGloves.getStyleClass().add("browse-gloves");
+        smallAnimalLabel.getStyleClass().add("browse-animal");
+
+        secondRow.getChildren().addAll(gloveImage, radiationGloves, animalImage, smallAnimalLabel);
+        //secondRow.setPadding(new Insets(10));
+        secondRow.setSpacing(15);
+        secondRow.setAlignment(Pos.CENTER);
+
+        HBox storeVBox = new HBox(firstRow, secondRow);
+        storeVBox.setAlignment(Pos.CENTER);
+        storeVBox.setSpacing(100);
+
+        // set actions for the labels
+        lead.setOnMouseClicked(event->{
+            // code
+        });
+        phantom.setOnMouseClicked(event->{
+            //code
+        });
+        radiationGloves.setOnMouseClicked(event->{
+            // code
+        });
+        smallAnimalLabel.setOnMouseClicked(event->{
+            //code
+        });
+
+
 
 
         Image img = new Image("file:res/background.jpeg");
@@ -183,11 +248,17 @@ public class Main extends Application {
         BackgroundImage bgImg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bgSize);
 
-        VBox home = new VBox(menuBar, searchBox, mostPopularSection, browse);
+        VBox testing = new VBox(menuBar, searchBox, mostPopularSection, browse);
+        testing.setAlignment(Pos.CENTER);
+
+        BorderPane home = new BorderPane();
+        home.setTop(testing);
+        //home.setTop(searchBox);
+        home.setBottom(storeVBox);
         home.setBackground(new Background(bgImg));
 
         home.getStyleClass().add("root");
-        home.setSpacing(10);
+        //home.setSpacing(10);
         home.setPadding(new Insets(10));
 
 
