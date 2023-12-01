@@ -239,9 +239,6 @@ public class Main extends Application {
             //code
         });
 
-
-
-
         Image img = new Image("file:res/background.jpeg");
         BackgroundSize bgSize = new BackgroundSize(100, 100, true, true, true, true);
         BackgroundImage bgImg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT,
