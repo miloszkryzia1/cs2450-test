@@ -28,16 +28,10 @@ public class Details{
 		
 		//Table
 		GridPane table = new GridPane();
-		//Labels
-		Label stockNumLabel = new Label("Stock #");
-		Label stockNum = new Label("R221");
-		Label priceLabel = new Label("Your Price");
-		Label price = new Label("$2,300.00");
-		//Colors
-		table.add(stockNumLabel, 0, 0);
-		table.add(stockNum, 0, 1);
-		table.add(priceLabel, 1, 0);
-		table.add(price, 1, 1);
+		table.add(new Label("R221"), 0, 0);
+		table.add(new Label("Stock #"), 0, 1);
+		table.add(new Label("Your Price"), 1, 0);
+		table.add(new Label("$2,300.00"), 1, 1);
 		table.setGridLinesVisible(true);
 		table.setAlignment(Pos.CENTER);
 		
@@ -87,6 +81,41 @@ public class Details{
 		for (int i = 1; i <= types.length; i++) {
 			table.add(types[i-1], 0, i);
 		}
+		table.setGridLinesVisible(true);
+		table.setAlignment(Pos.CENTER);
+		
+		HBox hbox = new HBox(40, text, table);
+		hbox.setAlignment(Pos.CENTER);
+		
+		return hbox;
+	}
+	
+	public static HBox getGloveDetails() {
+		
+		//Description
+		Label text = new Label("Features:\r\n"
+				+ "   - Now both latex free and powder free!\r\n"
+				+ "   - Made with premium, pure lead oxide for maximum protection.\r\n"
+				+ "   - Thin fingertips provide enhanced tactile sensitivity.\r\n"
+				+ "   - Latex-Free and Hypoallergenic finish creates a smooth interior which reduces skin irritation.\r\n"
+				+ "   - Anatomically correct curved fingers reduce hand fatigue.\r\n"
+				+ "   - Sizes range from 6 - 9 in half sizes for a better fit. MUST PICK SIZE at time of order.\r\n"
+				+ "   - Attenuates up to 30% more direct beam radiation than other leading products.\r\n"
+				+ "   - Available in 0.280mm (0.012\") and 0.220mm (0.0088\") finger tip thickness.\r\n"
+				+ "   - 12\" length.\r\n"
+				+ "   - Sterile packaging. (includes 1 right & 1 left)");
+		
+		//Table
+		GridPane table = new GridPane();
+		table.add(new Label("Stock #"), 0, 0);
+		table.add(new Label("Thickness"), 1, 0);
+		table.add(new Label("Your Price"), 2, 0);
+		table.add(new Label("RR1"), 0, 1);
+		table.add(new Label("RR2"), 0, 2);
+		table.add(new Label("0.0088\" (.24mm)"), 1, 1);
+		table.add(new Label("0.012\" (.28mm)"), 1, 2);
+		table.add(new Label("$44.00"), 2, 1);
+		table.add(new Label("$47.00"), 2, 2);
 		table.setGridLinesVisible(true);
 		table.setAlignment(Pos.CENTER);
 		

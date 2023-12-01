@@ -309,7 +309,7 @@ public class Main extends Application {
     	});
     	
     	// TODO needs an argument and check what product to display
-    	Parent content = Details.getApronDetails();
+    	Parent content = Details.getGloveDetails();
     	
     	VBox vbox = new VBox(20, content, backBtn);
     	vbox.setAlignment(Pos.CENTER);
@@ -320,8 +320,7 @@ public class Main extends Application {
 		stage.setFullScreen(true);
 		stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH); // ctrl esc
 		stage.setResizable(true);
-		 
-		 
+		
     }
 }
 
