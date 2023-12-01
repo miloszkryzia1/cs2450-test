@@ -31,11 +31,8 @@ public class Main extends Application {
     public void start(Stage stage) {
         // background image
         Scene scene = new Scene(homePage(stage));
-        //scene.getStylesheets().add("Styling.css");
-        scene.getStylesheets().add(new Details().getClass().getResource("Styling.css").toExternalForm());
-        //TODO TESTING
-        getDetailsPage("MRI.txt", "MRI", stage.getScene(), stage);
-        //stage.setScene(scene);
+        scene.getStylesheets().add("Styling.css");
+        stage.setScene(scene);
         stage.setFullScreen(true);
         stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);  // ctrl esc
         stage.setResizable(true);
