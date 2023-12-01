@@ -1,4 +1,4 @@
-package com.example.testing3;
+package application;
 
 import java.util.Scanner;
 
@@ -30,7 +30,7 @@ public class Main extends Application {
     public void start(Stage stage) {
         // background image
         Scene scene = new Scene(homePage(stage));
-        scene.getStylesheets().add("Styling.css");
+        scene.getStylesheets().add(getClass().getResource("Styling.css").toExternalForm());
         stage.setScene(scene);
         stage.setFullScreen(true);
         stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);  // ctrl esc
