@@ -34,7 +34,7 @@ public class Main extends Application {
         //scene.getStylesheets().add("Styling.css");
         scene.getStylesheets().add(new Details().getClass().getResource("Styling.css").toExternalForm());
         //TODO TESTING
-        getDetailsPage("immobilizer.txt", stage.getScene(), stage);
+        getDetailsPage("MRI.txt", "MRI", stage.getScene(), stage);
         //stage.setScene(scene);
         stage.setFullScreen(true);
         stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);  // ctrl esc
@@ -275,10 +275,6 @@ public class Main extends Application {
 		//Button
 		Button p_details = new Button("Product Details");
 		
-		//TESTING
-		p_details.setOnAction(event -> {
-			getDetailsPage(filename, stage.getScene(), stage);
-		});
 		
 		Button buy_button = new Button("buy Now!");
 		//Layout
@@ -303,7 +299,10 @@ public class Main extends Application {
         stage.setResizable(true);
 	}
     
-    public static void getDetailsPage(String filename, Scene previousScene, Stage stage) {
+    public static void getDetailsPage(String filename, String productName, Scene previousScene, Stage stage) {
+    	Label name = new Label(productName);
+    	Label l = new Label("Product Details");
+    	
     	Button backBtn = new Button("Back");
     	backBtn.setOnAction(event -> {
     		stage.setScene(previousScene);
@@ -330,11 +329,14 @@ public class Main extends Application {
     	case ("immobilizer.txt"):
     		content = Details.getImmobilizerDetails();
     		break; 
+    	case ("MRI.txt"):
+    		content = Details.getMriDetails();
+    		break;
     	default:
     		return;
     	}
     	
-    	VBox vbox = new VBox(20, content, backBtn);
+    	VBox vbox = new VBox(20, name, l, content, backBtn);
     	vbox.setAlignment(Pos.CENTER);
     	Scene scene = new Scene(vbox);
     	scene.getStylesheets().add(new Details().getClass().getResource("detailStyles.css").toExternalForm());

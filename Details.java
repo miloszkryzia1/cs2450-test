@@ -261,4 +261,91 @@ public class Details{
 		hbox.setAlignment(Pos.CENTER);
 		return hbox;
 	}
+	
+	public static HBox getMriDetails() {
+		
+		//Description
+		Label text = new Label("It can be used to measure:\r\n"
+				+ "   - geometric distortion\r\n"
+				+ "   - spatial resolution\r\n"
+				+ "   - slice thickness and position\r\n"
+				+ "   - interslice Gap\r\n"
+				+ "   - image bandwidth\r\n"
+				+ "   - low contrast detectability\r\n"
+				+ "   - image uniformity\r\n"
+				+ "   - signal-to-noise ratio (SNR)\r\n"
+				+ "   - physical and electronic slice offset\r\n"
+				+ "   - point of reference\r\n"
+				+ "   - bandwidth: water-fat shift\r\n"
+				+ "\r\n"
+				+ "Technical data:\r\n"
+				+ "   - outside cylinder diameter: 178 mm\r\n"
+				+ "   - outside cylinder height: 157 mm\r\n"
+				+ "   - inside cylinder diameter: 165 mm\r\n"
+				+ "   - inside cylinder height: 134 mm\r\n"
+				+ "   - filled with 10 mmol nickel chloride solution containing sodium chloride 75 mmol\r\n"
+				+ "   - the outside of each phantom has the words “NOSE” and “CHIN” etched into it \r\n"
+				+ " as an aid to orienting the phantom for scanning, as if it were a head");
+		
+		//Table
+		GridPane table = new GridPane();
+		Label[] titles = {
+				new Label("Stock #"),
+				new Label("Description"),
+				new Label("Case Included?"),
+				new Label("ACR Rated?"),
+				new Label("Your Price")
+			};
+			for (int i = 0; i < titles.length; i++) {
+				titles[i].getStyleClass().add("table-header");
+				table.add(titles[i], i, 0);
+			}
+			Label[] contents = {
+					new Label("09-301"),
+					new Label("09-104"),
+					new Label("09-102"),
+					new Label("09-103"),
+					new Label("09-201"),
+					new Label("09-202"),
+					new Label("Pro-MRI ACR Medium MRI Phantom"),
+					new Label("Pro-MRI Detachable 3-axis spirit level"),
+					new Label("Pro-MRI Heavy Duty Carrying Case"),
+					new Label("Pro-MRI - 6 removable vials option\r\n"
+							+ "with 6 extra vials (12 in total)"),
+					new Label("Pro-MRI SpineRect"),
+					new Label("Pro-MRI Agar"),
+					new Label("Yes"),
+					new Label("NA"),
+					new Label("NA"),
+					new Label("NA"),
+					new Label("NA"),
+					new Label("NA"),
+					new Label("Yes"),
+					new Label("NA"),
+					new Label("NA"),
+					new Label("NA"),
+					new Label("NA"),
+					new Label("NA"),
+					new Label("$2,675.00"),
+					new Label("$295.00"),
+					new Label("$275.00"),
+					new Label("$495.00"),
+					new Label("$1,375.00"),
+					new Label("$775.00")
+			};
+			int k = 0;
+			for (int i = 0; i < titles.length; i++) {
+				for (int j = 1; j <= 3; j++) {
+					table.add(contents[k], i, j);
+					k++;
+				}
+			}
+			
+			table.setAlignment(Pos.CENTER);
+			table.setGridLinesVisible(true);
+			
+			HBox hbox = new HBox(40, text, table);
+			hbox.setAlignment(Pos.CENTER);
+			return hbox;
+	}
 }
