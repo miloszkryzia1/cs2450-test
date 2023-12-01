@@ -111,7 +111,7 @@ public class Main extends Application {
 
         //FOR TESTS
         searchButton.setOnAction(event -> {
-        	getDetailsPage(stage);
+        	getDetailsPage(stage.getScene(), stage);
         });
         
 
@@ -299,12 +299,23 @@ public class Main extends Application {
         stage.setResizable(true);
 	}
     
-    public static void getDetailsPage(Stage stage) {
+    public static void getDetailsPage(Scene previousScene, Stage stage) {
     	Button backBtn = new Button("Back");
-    	Parent content = Table.getCollimatorTable();
+    	backBtn.setOnAction(event -> {
+    		stage.setScene(previousScene);
+    		stage.setFullScreen(true);
+    		stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH); // ctrl esc
+    		stage.setResizable(true);
+    	});
+    	
+    	// TODO needs an argument and check what product to display
+    	Parent content = Details.getApronDetails();
+    	
     	VBox vbox = new VBox(20, content, backBtn);
     	vbox.setAlignment(Pos.CENTER);
     	Scene scene = new Scene(vbox);
+    	scene.getStylesheets().add(new Details().getClass().getResource("detailStyles.css").toExternalForm());
+
     	stage.setScene(scene);
 		stage.setFullScreen(true);
 		stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH); // ctrl esc
