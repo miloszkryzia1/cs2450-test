@@ -1,0 +1,30 @@
+.root{
+    -fx-font-family: arial;
+    -fx-text-fill: white;
+}
+.label-name{
+    -fx-font-size: 26;
+    -fx-font-weight: bold;
+    -fx-text-fill : white;
+}
+.menu-bar {
+    -fx-background-color: transparent;
+    -fx-font-size: 15;
+    -fx-text-fill : white;
+    -fx-spacing: 200;
+    -fx-padding: 0 5 0 5;
+    -fx-alignment: CENTER;
+}
+
+.search-bar{
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-background-radius: 110;
+    -fx-prompt-text-fill: gray;
+}
+.button-search{
+    -fx-text-fill: white;
+    -fx-font-size: 16;
+    -fx-background-color: linear-gradient(to bottom, #cccccc, #999999);
+    -fx-background-radius: 100;
+}
