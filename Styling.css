@@ -28,3 +28,24 @@
     -fx-background-color: linear-gradient(to bottom, #cccccc, #999999);
     -fx-background-radius: 100;
 }
+
+.browse-gloves{
+    -fx-underline: true;
+    -fx-font-size: 16;
+    -fx-text-fill: white;
+}
+.browse-lead{
+    -fx-underline: true;
+    -fx-font-size: 16;
+    -fx-text-fill: white;
+}
+.browse-MRI{
+    -fx-underline: true;
+    -fx-font-size: 16;
+    -fx-text-fill: white;
+}
+.browse-animal{
+    -fx-underline: true;
+    -fx-font-size: 16;
+    -fx-text-fill: white;
+}
