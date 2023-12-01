@@ -31,7 +31,8 @@ public class Main extends Application {
     public void start(Stage stage) {
         // background image
         Scene scene = new Scene(homePage(stage));
-        scene.getStylesheets().add("Styling.css");
+        //scene.getStylesheets().add("Styling.css");
+        scene.getStylesheets().add(new Details().getClass().getResource("Styling.css").toExternalForm());
         stage.setScene(scene);
         stage.setFullScreen(true);
         stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);  // ctrl esc
@@ -309,7 +310,7 @@ public class Main extends Application {
     	});
     	
     	// TODO needs an argument and check what product to display
-    	Parent content = Details.getGloveDetails();
+    	Parent content = Details.getCollimatorDetails();
     	
     	VBox vbox = new VBox(20, content, backBtn);
     	vbox.setAlignment(Pos.CENTER);

@@ -25,12 +25,17 @@ public class Details{
 				+ "  - 45° rotation of the collimator, the flange is included.\r\n"
 				+ "  - Dimensions: 270.5x183x168 mm\r\n"
 				+ "  - 6 Pairs of Shutters");
+		text.getStyleClass().add("detail-description");
 		
 		//Table
 		GridPane table = new GridPane();
-		table.add(new Label("R221"), 0, 0);
-		table.add(new Label("Stock #"), 0, 1);
-		table.add(new Label("Your Price"), 1, 0);
+		Label stockNumHeader = new Label("Stock #");
+		stockNumHeader.getStyleClass().add("table-header");
+		Label priceHeader = new Label("Your Price");
+		priceHeader.getStyleClass().add("table-header");
+		table.add(new Label("R221"), 0, 1);
+		table.add(stockNumHeader, 0, 0);
+		table.add(priceHeader, 1, 0);
 		table.add(new Label("$2,300.00"), 1, 1);
 		table.setGridLinesVisible(true);
 		table.setAlignment(Pos.CENTER);
@@ -53,6 +58,7 @@ public class Details{
 				+ "   - Every \"Revolution\" series apron comes with Cool Wear Moisture-Wicking fabric standard.\r\n"
 				+ "   - Professionally designed for an exceptional fit and comfort.\r\n"
 				+ "   - Flame Resistant. Abrasion Resistant. 100% Waterproof.");
+		text.getStyleClass().add("detail-description");
 		
 		//Table
 		GridPane table = new GridPane();
@@ -64,6 +70,7 @@ public class Details{
 		};
 		for (int i = 0; i < titles.length; i++) {
 			table.add(titles[i], i, 0);
+			titles[i].getStyleClass().add("table-header");
 		}
 		Label[] types = {
 			new Label("Revolution Full Overlap\r\n"
@@ -104,12 +111,21 @@ public class Details{
 				+ "   - Available in 0.280mm (0.012\") and 0.220mm (0.0088\") finger tip thickness.\r\n"
 				+ "   - 12\" length.\r\n"
 				+ "   - Sterile packaging. (includes 1 right & 1 left)");
+		text.getStyleClass().add("detail-description");
 		
 		//Table
 		GridPane table = new GridPane();
-		table.add(new Label("Stock #"), 0, 0);
-		table.add(new Label("Thickness"), 1, 0);
-		table.add(new Label("Your Price"), 2, 0);
+		
+		Label[] titles = {
+				new Label("Stock #"),
+				new Label("Thickness"),
+				new Label("Your Price")
+		};
+		for (int i = 0; i < titles.length; i++) {
+			table.add(titles[i], i, 0);
+			titles[i].getStyleClass().add("table-header");
+		}
+		
 		table.add(new Label("RR1"), 0, 1);
 		table.add(new Label("RR2"), 0, 2);
 		table.add(new Label("0.0088\" (.24mm)"), 1, 1);
