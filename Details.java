@@ -140,4 +140,63 @@ public class Details{
 		
 		return hbox;
 	}
+	
+	public static HBox getIlluminatorDetails() {
+		
+		//Description
+		Label text = new Label("Features:\r\n"
+				+ "  - High quality, cost effective illuminators.\r\n"
+				+ "  - Available in three models: one, two, and four-bank.\r\n"
+				+ "  - Upper and Lower Film Grips.\r\n"
+				+ "  - Internal reflectors offer consistent illumination.\r\n"
+				+ "  - Includes two 15-watt fluorescent lamps.\r\n"
+				+ "  - Stand alone or use the keyhole slots for wall mounting.\r\n"
+				+ "  - 6 foot power cord.\r\n"
+				+ "  - UL listed.");
+		
+		//Table
+		GridPane table = new GridPane();
+		Label[] titles = {
+			new Label("Stock #"),
+			new Label("Viewbox Configuration"),
+			new Label("Size"),
+			new Label("Shipping Weight"),
+			new Label("Your Price")
+		};
+		for (int i = 0; i < titles.length; i++) {
+			table.add(titles[i], i, 0);
+			titles[i].getStyleClass().add("table-header");
+			titles[i].setAlignment(Pos.CENTER);
+		}
+		Label[] contents = {
+			new Label("VBS-10"),
+			new Label("VBD-20"),
+			new Label("VBQ-40"),
+			new Label("Single Unit"),
+			new Label("2 Bank Unit"),
+			new Label("4 Bank Unit"),
+			new Label("14W x 3-1/2D x 21-3/4\"H (356 x 89 x 553mm)"),
+			new Label("28W x 3-1/2D x 21-3/4\"H (711 x 89 x 553mm)"),
+			new Label("56W x 3-1/2D x 21-3/4\"H (1422 x 89 x 553mm) Ships Motor Freight"),
+			new Label("17 lbs. (8 kg)"),
+			new Label("34 lbs. (15.5 kg)"),
+			new Label("80 lbs. (37 kg)"),
+			new Label("$833.33"),
+			new Label("$1,666.67"),
+			new Label("$1,614.61")
+		};
+		int k = 0;
+		for (int i = 0; i < titles.length; i++) {
+			for (int j = 1; j <= 3; j++) {
+				table.add(contents[k], i, j);
+				k++;
+			}
+		}
+		table.setAlignment(Pos.CENTER);
+		table.setGridLinesVisible(true);
+		
+		HBox hbox = new HBox(40, text, table);
+		hbox.setAlignment(Pos.CENTER);
+		return hbox;
+	}
 }

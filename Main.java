@@ -33,7 +33,9 @@ public class Main extends Application {
         Scene scene = new Scene(homePage(stage));
         //scene.getStylesheets().add("Styling.css");
         scene.getStylesheets().add(new Details().getClass().getResource("Styling.css").toExternalForm());
-        stage.setScene(scene);
+        //TODO TESTING
+        getDetailsPage("illuminators.txt", stage.getScene(), stage);
+        //stage.setScene(scene);
         stage.setFullScreen(true);
         stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);  // ctrl esc
         stage.setResizable(true);
@@ -109,11 +111,6 @@ public class Main extends Application {
         searchButton.setMaxWidth(100);
         searchButton.getStyleClass().add("button-search");
         // -fx-background-color: linear-gradient(to bottom, #cccccc, #999999);
-
-        //FOR TESTS
-        searchButton.setOnAction(event -> {
-        	getDetailsPage(stage.getScene(), stage);
-        });
         
 
         // most popular section
@@ -277,6 +274,12 @@ public class Main extends Application {
 		pTitleLabel.setStyle("-fx-font-size: 18pt; -fx-font-weight: bold");
 		//Button
 		Button p_details = new Button("Product Details");
+		
+		//TESTING
+		p_details.setOnAction(event -> {
+			getDetailsPage(filename, stage.getScene(), stage);
+		});
+		
 		Button buy_button = new Button("buy Now!");
 		//Layout
 		HBox buttonBox = new HBox(20, p_details, buy_button);
@@ -300,7 +303,7 @@ public class Main extends Application {
         stage.setResizable(true);
 	}
     
-    public static void getDetailsPage(Scene previousScene, Stage stage) {
+    public static void getDetailsPage(String filename, Scene previousScene, Stage stage) {
     	Button backBtn = new Button("Back");
     	backBtn.setOnAction(event -> {
     		stage.setScene(previousScene);
@@ -310,7 +313,23 @@ public class Main extends Application {
     	});
     	
     	// TODO needs an argument and check what product to display
-    	Parent content = Details.getCollimatorDetails();
+    	Parent content;
+    	switch (filename) {
+    	case ("collimator.txt"):
+    		content = Details.getCollimatorDetails();
+    		break;
+    	case ("full_overlap_apron.txt"):
+    		content = Details.getApronDetails();
+    		break; 
+    	case ("glove.txt"):
+    		content = Details.getGloveDetails();
+    		break;	
+    	case ("illuminators.txt"):
+    		content = Details.getIlluminatorDetails();
+    		break;
+    	default:
+    		return;
+    	}
     	
     	VBox vbox = new VBox(20, content, backBtn);
     	vbox.setAlignment(Pos.CENTER);
