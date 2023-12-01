@@ -34,7 +34,7 @@ public class Main extends Application {
         //scene.getStylesheets().add("Styling.css");
         scene.getStylesheets().add(new Details().getClass().getResource("Styling.css").toExternalForm());
         //TODO TESTING
-        getDetailsPage("illuminators.txt", stage.getScene(), stage);
+        getDetailsPage("immobilizer.txt", stage.getScene(), stage);
         //stage.setScene(scene);
         stage.setFullScreen(true);
         stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);  // ctrl esc
@@ -327,6 +327,9 @@ public class Main extends Application {
     	case ("illuminators.txt"):
     		content = Details.getIlluminatorDetails();
     		break;
+    	case ("immobilizer.txt"):
+    		content = Details.getImmobilizerDetails();
+    		break; 
     	default:
     		return;
     	}

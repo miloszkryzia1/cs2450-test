@@ -199,4 +199,66 @@ public class Details{
 		hbox.setAlignment(Pos.CENTER);
 		return hbox;
 	}
+	
+	public static HBox getImmobilizerDetails() {
+		
+		//Description
+		Label text = new Label("Features:\r\n"
+				+ "   - \"Techo-Tuff\" Black Vinyl.\r\n"
+				+ "   - Light and extremely durable, radiolucent design.\r\n"
+				+ "   - Unique v-shaped design to reduce motion and prevent falls during procedures.\r\n"
+				+ "   - Included hook & loop straps quickly and conveniently attach anywhere along the entire trough to fit any positioning need.\r\n"
+				+ "   - Waterproof, stain proof and anti-microbial black vinyl fabric!\r\n"
+				+ "   - Easy and safe to clean with standard germicides and mild cleaners.\r\n"
+				+ "   - Available in four standard sizes to meet nearly every need!");
+		
+		//Table
+		GridPane table = new GridPane();
+		Label[] titles = {
+			new Label("Stock #"),
+			new Label("Size"),
+			new Label("Dimensions"),
+			new Label("Your Price")
+		};
+		for (int i = 0; i < titles.length; i++) {
+			titles[i].getStyleClass().add("table-header");
+			table.add(titles[i], i, 0);
+		}
+		Label[] contents = {
+				new Label("VIT-X"),
+				new Label("VIT-L"),
+				new Label("VIT-M"),
+				new Label("VIT-S"),
+				new Label("VIT-B"),
+				new Label("X-Large"),
+				new Label("Large"),
+				new Label("Medium"),
+				new Label("Small"),
+				new Label("Bundle (includes all above)"),
+				new Label("36\" x 14\" x 9\" high"),
+				new Label("24\"x 11\"x 7\" high"),
+				new Label("15\"x 7\"x 5\" high"),
+				new Label("10\"x 4\"x 3\" high"),
+				new Label("See Above Sizing"),
+				new Label("$345.00"),
+				new Label("$240.00"),
+				new Label("$165.00"),
+				new Label("$140.00"),
+				new Label("$849.33")
+		};
+		int k = 0;
+		for (int i = 0; i < titles.length; i++) {
+			for (int j = 1; j <= 3; j++) {
+				table.add(contents[k], i, j);
+				k++;
+			}
+		}
+		
+		table.setAlignment(Pos.CENTER);
+		table.setGridLinesVisible(true);
+		
+		HBox hbox = new HBox(40, text, table);
+		hbox.setAlignment(Pos.CENTER);
+		return hbox;
+	}
 }
