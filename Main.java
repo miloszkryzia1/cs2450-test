@@ -191,7 +191,6 @@ public class Main extends Application {
         Label lead = new Label("Lead Aprons");
         lead.getStyleClass().add("browse-lead");
         Label phantom = new Label("Medium MRI Phantom");
-        phantom.setStyle("-fx-underline: true");
         phantom.getStyleClass().add("browse-MRI");
 
         firstRow.getChildren().addAll(leadApron, lead,mediumMRI, phantom);
