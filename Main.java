@@ -26,6 +26,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import javafx.util.Duration;
 import java.io.*;
+import javafx.scene.Parent;
 
 public class Main extends Application {
     int currentIndex =0;
@@ -115,12 +116,6 @@ public class Main extends Application {
         searchButton.setMaxWidth(100);
         searchButton.getStyleClass().add("button-search");
         // -fx-background-color: linear-gradient(to bottom, #cccccc, #999999);
-
-        //TEST - TEPORARY
-        searchButton.setOnAction(event -> {
-            getProductPage("glove.txt", stage);
-        });
-
 
         // most popular section
         Label mostPopular = new Label("Most Popular");
@@ -401,8 +396,7 @@ public class Main extends Application {
 			openLink("http://www.pnwx.com/PNWX-OrderForm.pdf");
 		});
 		//============================Products' page Layout===================================
-		
-		
+
 		HBox buttonBox = new HBox(20, p_details, buy_button);
 		buttonBox.setAlignment(Pos.CENTER);
 		VBox vbox1 = new VBox(20, pDescText, buttonBox);
@@ -432,9 +426,59 @@ public class Main extends Application {
 		stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);  // ctrl esc
         stage.setResizable(true);
 	}
+
     //======================== Open Link Method==============================
     private void openLink(String url) {
         HostServices hostServices = getHostServices();
         hostServices.showDocument(url);
+	}
+
+    
+    public static void getDetailsPage(String filename, String productName, Scene previousScene, Stage stage) {
+    	Label name = new Label(productName);
+    	Label l = new Label("Product Details");
+    	
+    	Button backBtn = new Button("Back");
+    	backBtn.setOnAction(event -> {
+    		stage.setScene(previousScene);
+    		stage.setFullScreen(true);
+    		stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH); // ctrl esc
+    		stage.setResizable(true);
+    	});
+    	
+    	// TODO needs an argument and check what product to display
+    	Parent content;
+    	switch (filename) {
+    	case ("collimator.txt"):
+    		content = Details.getCollimatorDetails();
+    		break;
+    	case ("full_overlap_apron.txt"):
+    		content = Details.getApronDetails();
+    		break; 
+    	case ("glove.txt"):
+    		content = Details.getGloveDetails();
+    		break;	
+    	case ("illuminators.txt"):
+    		content = Details.getIlluminatorDetails();
+    		break;
+    	case ("immobilizer.txt"):
+    		content = Details.getImmobilizerDetails();
+    		break; 
+    	case ("MRI.txt"):
+    		content = Details.getMriDetails();
+    		break;
+    	default:
+    		return;
+    	}
+    	
+    	VBox vbox = new VBox(20, name, l, content, backBtn);
+    	vbox.setAlignment(Pos.CENTER);
+    	Scene scene = new Scene(vbox);
+    	scene.getStylesheets().add(new Details().getClass().getResource("detailStyles.css").toExternalForm());
+
+    	stage.setScene(scene);
+		stage.setFullScreen(true);
+		stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH); // ctrl esc
+		stage.setResizable(true);
     }
 }
