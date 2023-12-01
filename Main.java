@@ -272,6 +272,7 @@ public class Main extends Application {
 
     //================================== Product Page ==============================
 
+    static String pTitle = null;
     /**
      * Sets the stage's scene to specified product's page
      * @param filename Product's text file with data
@@ -282,7 +283,7 @@ public class Main extends Application {
 		//get data
 		Image pImage = null;
 		String pDescription = null;
-		String pTitle = null;
+		
 		try {
 			Scanner scanner = new Scanner(new File("src/application/products/" + filename));
 			pTitle = scanner.nextLine();
@@ -389,6 +390,11 @@ public class Main extends Application {
 		pTitleLabel.setStyle("-fx-font-size: 18pt; -fx-font-weight: bold");
 		//Button
 		Button p_details = new Button("Product Details");
+		//redirect to details
+		p_details.setOnAction(event -> {
+			getDetailsPage(filename, pTitle, stage.getScene(), stage);
+		});
+		
 		Button buy_button = new Button("Buy Now!");
 		// redirect to order form
 		buy_button.setOnAction(event->
