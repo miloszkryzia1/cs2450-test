@@ -1,7 +1,10 @@
 package application;
 
 import javafx.scene.layout.*;
+import javafx.geometry.HPos;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 
 /**
@@ -264,9 +267,14 @@ public class Details{
 	
 	public static HBox getMriDetails() {
 		
+		//Description headers
+		Label header1 = new Label("It can be used to measure:\r\n");
+		header1.getStyleClass().add("desc-header");
+		Label header2 = new Label("Technical data:\r\n");
+		header2.getStyleClass().add("desc-header");
+		
 		//Description
-		Label text = new Label("It can be used to measure:\r\n"
-				+ "   - geometric distortion\r\n"
+		Label text1 = new Label("   - geometric distortion\r\n"
 				+ "   - spatial resolution\r\n"
 				+ "   - slice thickness and position\r\n"
 				+ "   - interslice Gap\r\n"
@@ -276,10 +284,8 @@ public class Details{
 				+ "   - signal-to-noise ratio (SNR)\r\n"
 				+ "   - physical and electronic slice offset\r\n"
 				+ "   - point of reference\r\n"
-				+ "   - bandwidth: water-fat shift\r\n"
-				+ "\r\n"
-				+ "Technical data:\r\n"
-				+ "   - outside cylinder diameter: 178 mm\r\n"
+				+ "   - bandwidth: water-fat shift\r\n");
+		Label text2 = new Label("   - outside cylinder diameter: 178 mm\r\n"
 				+ "   - outside cylinder height: 157 mm\r\n"
 				+ "   - inside cylinder diameter: 165 mm\r\n"
 				+ "   - inside cylinder height: 134 mm\r\n"
@@ -287,8 +293,11 @@ public class Details{
 				+ "   - the outside of each phantom has the words “NOSE” and “CHIN” etched into it \r\n"
 				+ " as an aid to orienting the phantom for scanning, as if it were a head");
 		
+		VBox description = new VBox(header1,text1,header2,text2);
+		
 		//Table
 		GridPane table = new GridPane();
+		table.getStyleClass().add("table");
 		Label[] titles = {
 				new Label("Stock #"),
 				new Label("Description"),
@@ -343,9 +352,22 @@ public class Details{
 			
 			table.setAlignment(Pos.CENTER);
 			table.setGridLinesVisible(true);
+			alignTable(table);
 			
-			HBox hbox = new HBox(40, text, table);
+			HBox hbox = new HBox(40, description, table);
 			hbox.setAlignment(Pos.CENTER);
 			return hbox;
+	}
+	
+	// Align elements in a table
+	public static void alignTable(GridPane table) {
+		for (int i = 0; i < table.getChildren().size(); i++){
+			Node node = table.getChildren().get(i);
+			if (node instanceof Label) {
+				GridPane.setHalignment((Label)node, HPos.CENTER);
+				((Label) node).setPadding(new Insets(10,10,10,10));
+				((Label) node).setStyle("-fx-font-size: 15.0pt");
+			}
+		}
 	}
 }

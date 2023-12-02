@@ -40,6 +40,7 @@ public class Main extends Application {
     	//Load fonts
     	Font.loadFont(getClass().getResourceAsStream("fonts/FiraSans-Regular.ttf"), 12);
     	Font.loadFont(getClass().getResourceAsStream("fonts/FiraSans-Medium.ttf"), 12);
+    	Font.loadFont(getClass().getResourceAsStream("fonts/FiraSans-Bold.ttf"), 12);
     	
         // background image
         Scene scene = new Scene(homePage(stage));
@@ -507,9 +508,14 @@ public class Main extends Application {
         //mb.setPadding(new Insets(10));
         mb.setStyle("-fx-padding: 10 60 10 60;");
     	
+        //Title
     	Label name = new Label(productName);
+    	name.setId("product-name");
+    	name.setStyle("-fx-font-size: 20.0pt");
     	Label l = new Label("Product Details");
+    	l.setStyle("-fx-font-size: 20.0pt");
     	
+    	//Back button
     	Button backBtn = new Button("Back");
     	backBtn.setOnAction(event -> {
     		stage.setScene(previousScene);
@@ -543,7 +549,7 @@ public class Main extends Application {
     		return;
     	}
     	
-    	VBox vbox = new VBox(20, name, l, content, backBtn);
+    	VBox vbox = new VBox(40, name, l, content, backBtn);
     	vbox.setAlignment(Pos.CENTER);
     	vbox.setPadding(new Insets(20,20,20,20));
     	

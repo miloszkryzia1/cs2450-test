@@ -16,13 +16,14 @@
     -fx-background-color: #057D5D;
 }
 
-/* Set the background color of grid pane cells with row index 0 to #057D5D */
-
-
-/* Set the background color of other grid cells to white */
-.grid-pane {
-    -fx-background-color: white;
+.label.desc-header {
+	-fx-font-weight: bold;
 }
+
+#product-name{
+	-fx-font-weight: bold;
+}
+
 
 .button {
     -fx-min-width: 12em; /* Base width of the button */
