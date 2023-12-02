@@ -37,6 +37,9 @@ public class Main extends Application {
     }
 
     public void start(Stage stage) {
+    	//Load fonts
+    	Font.loadFont(getClass().getResourceAsStream("fonts/FiraSans-Regular.ttf"), 12);
+    	Font.loadFont(getClass().getResourceAsStream("fonts/FiraSans-Medium.ttf"), 12);
     	
         // background image
         Scene scene = new Scene(homePage(stage));
@@ -542,6 +545,7 @@ public class Main extends Application {
     	
     	VBox vbox = new VBox(20, name, l, content, backBtn);
     	vbox.setAlignment(Pos.CENTER);
+    	vbox.setPadding(new Insets(20,20,20,20));
     	
     	BorderPane bp = new BorderPane();
     	bp.setTop(mb);

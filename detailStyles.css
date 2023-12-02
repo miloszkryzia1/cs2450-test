@@ -3,6 +3,11 @@
 /* Set the background color of the scene to #0ED1A2 */
 .root {
     -fx-background-color: #0ED1A2;
+    -fx-font-family: "Fira Sans", sans-serif;
+}
+
+.label {
+	-fx-font-size: 12.0pt;
 }
 
 /* Set the text color of labels with class "table-header" to white */
@@ -17,4 +22,16 @@
 /* Set the background color of other grid cells to white */
 .grid-pane {
     -fx-background-color: white;
+}
+
+.button {
+    -fx-min-width: 12em; /* Base width of the button */
+    -fx-min-height: 3em; /* Base height of the button */
+    -fx-background-color: #FFFFFF; /* White background */
+    -fx-text-fill: #000000; /* Black text color */
+    -fx-border-color: #000000; /* Black border color */
+    -fx-border-width: 2; /* Border width */
+    -fx-border-radius: 10; /* Rounded corners */
+    -fx-font-size: 10.0pt;
+    -fx-background-insets:2,0,0;
 }
