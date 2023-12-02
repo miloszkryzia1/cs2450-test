@@ -20,6 +20,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.*;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.paint.ImagePattern;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -36,6 +37,7 @@ public class Main extends Application {
     }
 
     public void start(Stage stage) {
+    	
         // background image
         Scene scene = new Scene(homePage(stage));
         scene.getStylesheets().add(getClass().getResource("Styling.css").toExternalForm());
