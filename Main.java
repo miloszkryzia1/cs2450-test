@@ -117,12 +117,12 @@ public class Main extends Application {
         	String userInput = search.getText().toLowerCase();
         	 if (userInput.contains("apron")) {
         		 getProductPage("full_overlap_apron.txt" , stage);
-             } else if (userInput.contains("MRI"))
+             } else if (userInput.contains("mri"))
              {
             	 getProductPage("MRI.txt" , stage);
              } else if (userInput.contains("collimator"))
              {
-            	 getProductPage("MRI.txt" , stage);
+            	 getProductPage("collimator.txt" , stage);
              } else if (userInput.contains("glove"))
              {
             	 getProductPage("glove.txt" , stage);
@@ -550,12 +550,12 @@ public class Main extends Application {
         	String userInput = search.getText().toLowerCase();
         	 if (userInput.contains("apron")) {
         		 getProductPage("full_overlap_apron.txt" , stage);
-             } else if (userInput.contains("MRI"))
+             } else if (userInput.contains("mri"))
              {
             	 getProductPage("MRI.txt" , stage);
              } else if (userInput.contains("collimator"))
              {
-            	 getProductPage("MRI.txt" , stage);
+            	 getProductPage("collimator.txt" , stage);
              } else if (userInput.contains("glove"))
              {
             	 getProductPage("glove.txt" , stage);
