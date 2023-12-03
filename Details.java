@@ -13,22 +13,27 @@ import javafx.scene.control.*;
 public class Details{
 	public static HBox getCollimatorDetails() {
 		
+		//Description headers
+		Label header = new Label("Features:\r\n");
+		header.getStyleClass().add("desc-header");
+		
 		//Description
-		Label text = new Label("Features:\r\n"
-				+ "Projection Lamp: White LED\r\n"
-				+ "  - Single Layer Square Adjustable Field: 0x0cm to 48x48cm at 100cm SID\r\n"
-				+ "  - Mounting Plane at 80 mm (3.14\") from the focus.\r\n"
-				+ "  - Continuous Film Coverage from Min: 00 x 00 cm to Max: 48 x 48 cm at 100 cm (40\") SID.\r\n"
-				+ "  - Minimum Inherent Filtration: 2mm/Al equivalent\r\n"
-				+ "  - Accessory Guides are used for accessories and additonal filtration.\r\n"
-				+ "  - Retractable Tape mounted on the side of unit for measuring SID distance.\r\n"
-				+ "  - High brightness White LED simulating the X-ray field controlled by an electronic timer.\r\n"
-				+ "  - Minimum Inherent Filtration 2mm/Al equivalent.\r\n"
-				+ "  - Auto-centering top plate (RO 318) with high resistant resin mounting flange allowing +/-\r\n"
-				+ "  - 45° rotation of the collimator, the flange is included.\r\n"
-				+ "  - Dimensions: 270.5x183x168 mm\r\n"
-				+ "  - 6 Pairs of Shutters");
-		text.getStyleClass().add("detail-description");
+		Label text = new Label("   - Projection Lamp: White LED\r\n"
+				+ "   - Single Layer Square Adjustable Field: 0x0cm to 48x48cm at 100cm SID\r\n"
+				+ "   - Mounting Plane at 80 mm (3.14\") from the focus.\r\n"
+				+ "   - Continuous Film Coverage from Min: 00 x 00 cm to Max: 48 x 48 cm at 100 cm (40\") SID.\r\n"
+				+ "   - Minimum Inherent Filtration: 2mm/Al equivalent\r\n"
+				+ "   - Accessory Guides are used for accessories and additonal filtration.\r\n"
+				+ "   - Retractable Tape mounted on the side of unit for measuring SID distance.\r\n"
+				+ "   - High brightness White LED simulating the X-ray field controlled by an electronic timer.\r\n"
+				+ "   - Minimum Inherent Filtration 2mm/Al equivalent.\r\n"
+				+ "   - Auto-centering top plate (RO 318) with high resistant resin mounting flange allowing +/-\r\n"
+				+ "   - 45° rotation of the collimator, the flange is included.\r\n"
+				+ "   - Dimensions: 270.5x183x168 mm\r\n"
+				+ "   - 6 Pairs of Shutters");
+
+
+		VBox description = new VBox(header, text);
 		
 		//Table
 		GridPane table = new GridPane();
@@ -44,17 +49,24 @@ public class Details{
 		table.setAlignment(Pos.CENTER);
 		styleTable(table);
 		
-		HBox hbox = new HBox(40, text, table);
+		HBox hbox = new HBox(40, description, table);
 		hbox.setAlignment(Pos.CENTER);
 		return hbox;
 	}
 	
 	public static HBox getApronDetails() {
 		
+		//Description headers
+		Label header = new Label("The 703 brings the Classic Infab design into the Revolution line,\r\n"
+				+ " adding a Black Belt for additional lumbar support.\r\n"
+				+ " This full overlap apron is lightweight,\r\n"
+				+ " offers great protection, and has a Classic fit.\r\n"
+				+ "\r\n"
+				+ "Features:\r\n");
+		header.getStyleClass().add("desc-header");
+		
 		//Description
-		Label text = new Label("The 703 brings the Classic Infab design into the Revolution line, adding a Black Belt for additional lumbar support.\r\n"
-				+ " This full overlap apron is lightweight, offers great protection, and has a Classic fit.\r\n"
-				+ "   - Exclusive Revolution outer material.\r\n"
+		Label text = new Label("   - Exclusive Revolution outer material.\r\n"
 				+ "   - Built in “Black Belt” for better lumbar support relieves weight from shoulder.\r\n"
 				+ "   - Bacterial Resistant.\r\n"
 				+ "   - Each Front Vest panel is 0.50mm giving a solid front body protection giving 1.0mm at overlap.\r\n"
@@ -62,7 +74,8 @@ public class Details{
 				+ "   - Every \"Revolution\" series apron comes with Cool Wear Moisture-Wicking fabric standard.\r\n"
 				+ "   - Professionally designed for an exceptional fit and comfort.\r\n"
 				+ "   - Flame Resistant. Abrasion Resistant. 100% Waterproof.");
-		text.getStyleClass().add("detail-description");
+
+		VBox description = new VBox(header, text);
 		
 		//Table
 		GridPane table = new GridPane();
@@ -96,7 +109,7 @@ public class Details{
 		table.setAlignment(Pos.CENTER);
 		styleTable(table);
 		
-		HBox hbox = new HBox(40, text, table);
+		HBox hbox = new HBox(40, description, table);
 		hbox.setAlignment(Pos.CENTER);
 		
 		return hbox;
@@ -104,9 +117,12 @@ public class Details{
 	
 	public static HBox getGloveDetails() {
 		
+		//Description headers
+		Label header = new Label("Features:\r\n");
+		header.getStyleClass().add("desc-header");
+		
 		//Description
-		Label text = new Label("Features:\r\n"
-				+ "   - Now both latex free and powder free!\r\n"
+		Label text = new Label("   - Now both latex free and powder free!\r\n"
 				+ "   - Made with premium, pure lead oxide for maximum protection.\r\n"
 				+ "   - Thin fingertips provide enhanced tactile sensitivity.\r\n"
 				+ "   - Latex-Free and Hypoallergenic finish creates a smooth interior which reduces skin irritation.\r\n"
@@ -116,7 +132,8 @@ public class Details{
 				+ "   - Available in 0.280mm (0.012\") and 0.220mm (0.0088\") finger tip thickness.\r\n"
 				+ "   - 12\" length.\r\n"
 				+ "   - Sterile packaging. (includes 1 right & 1 left)");
-		text.getStyleClass().add("detail-description");
+		
+		VBox description = new VBox(header, text);
 		
 		//Table
 		GridPane table = new GridPane();
@@ -141,7 +158,7 @@ public class Details{
 		table.setAlignment(Pos.CENTER);
 		styleTable(table);
 		
-		HBox hbox = new HBox(40, text, table);
+		HBox hbox = new HBox(40, description, table);
 		hbox.setAlignment(Pos.CENTER);
 		
 		return hbox;
@@ -149,9 +166,12 @@ public class Details{
 	
 	public static HBox getIlluminatorDetails() {
 		
+		//Description headers
+		Label header = new Label("Features:\r\n");
+		header.getStyleClass().add("desc-header");
+		
 		//Description
-		Label text = new Label("Features:\r\n"
-				+ "  - High quality, cost effective illuminators.\r\n"
+		Label text = new Label("  - High quality, cost effective illuminators.\r\n"
 				+ "  - Available in three models: one, two, and four-bank.\r\n"
 				+ "  - Upper and Lower Film Grips.\r\n"
 				+ "  - Internal reflectors offer consistent illumination.\r\n"
@@ -159,6 +179,8 @@ public class Details{
 				+ "  - Stand alone or use the keyhole slots for wall mounting.\r\n"
 				+ "  - 6 foot power cord.\r\n"
 				+ "  - UL listed.");
+		
+		VBox description = new VBox(header, text);
 		
 		//Table
 		GridPane table = new GridPane();
@@ -202,22 +224,29 @@ public class Details{
 		table.setGridLinesVisible(true);
 		styleTable(table);
 		
-		HBox hbox = new HBox(40, text, table);
+		HBox hbox = new HBox(40, description, table);
 		hbox.setAlignment(Pos.CENTER);
 		return hbox;
 	}
 	
 	public static HBox getImmobilizerDetails() {
 		
+		//Description headers
+		Label header = new Label("Features:\r\n");
+		header.getStyleClass().add("desc-header");
+		
 		//Description
 		Label text = new Label("Features:\r\n"
 				+ "   - \"Techo-Tuff\" Black Vinyl.\r\n"
 				+ "   - Light and extremely durable, radiolucent design.\r\n"
 				+ "   - Unique v-shaped design to reduce motion and prevent falls during procedures.\r\n"
-				+ "   - Included hook & loop straps quickly and conveniently attach anywhere along the entire trough to fit any positioning need.\r\n"
+				+ "   - Included hook & loop straps quickly and conveniently attach anywhere\r\n"
+				+ "     along the entire trough to fit any positioning need.\r\n"
 				+ "   - Waterproof, stain proof and anti-microbial black vinyl fabric!\r\n"
 				+ "   - Easy and safe to clean with standard germicides and mild cleaners.\r\n"
 				+ "   - Available in four standard sizes to meet nearly every need!");
+		
+		VBox description = new VBox(header, text);
 		
 		//Table
 		GridPane table = new GridPane();
@@ -265,7 +294,7 @@ public class Details{
 		table.setGridLinesVisible(true);
 		styleTable(table);
 		
-		HBox hbox = new HBox(40, text, table);
+		HBox hbox = new HBox(40, description, table);
 		hbox.setAlignment(Pos.CENTER);
 		return hbox;
 	}
@@ -294,9 +323,8 @@ public class Details{
 				+ "   - outside cylinder height: 157 mm\r\n"
 				+ "   - inside cylinder diameter: 165 mm\r\n"
 				+ "   - inside cylinder height: 134 mm\r\n"
-				+ "   - filled with 10 mmol nickel chloride solution containing sodium chloride 75 mmol\r\n"
-				+ "   - the outside of each phantom has the words “NOSE” and “CHIN” etched into it \r\n"
-				+ " as an aid to orienting the phantom for scanning, as if it were a head");
+				+ "   - filled with 10 mmol nickel chloride solution \r\n"
+				+ "     containing sodium chloride 75 mmol\r\n");
 		
 		VBox description = new VBox(header1,text1,header2,text2);
 		
@@ -371,7 +399,7 @@ public class Details{
 			if (node instanceof Label) {
 				GridPane.setHalignment((Label)node, HPos.CENTER);
 				((Label) node).setPadding(new Insets(10,10,10,10));
-				((Label) node).setStyle("-fx-font-size: 13.0pt");
+				((Label) node).setStyle("-fx-font-size: 12.5pt");
 			}
 		}
 	}

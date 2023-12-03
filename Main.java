@@ -39,7 +39,6 @@ public class Main extends Application {
     public void start(Stage stage) {
     	//Load fonts
     	Font.loadFont(getClass().getResourceAsStream("fonts/FiraSans-Regular.ttf"), 12);
-    	Font.loadFont(getClass().getResourceAsStream("fonts/FiraSans-Medium.ttf"), 12);
     	Font.loadFont(getClass().getResourceAsStream("fonts/FiraSans-Bold.ttf"), 12);
     	
         // background image
