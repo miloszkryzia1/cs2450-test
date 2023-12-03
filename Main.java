@@ -513,6 +513,8 @@ public class Main extends Application {
     	name.setStyle("-fx-font-size: 20.0pt");
     	Label l = new Label("Product Details");
     	l.setStyle("-fx-font-size: 20.0pt");
+    	VBox title = new VBox(name, l);
+    	title.setAlignment(Pos.CENTER);
     	
     	//Back button
     	Button backBtn = new Button("Back");
@@ -548,7 +550,7 @@ public class Main extends Application {
     		return;
     	}
     	
-    	VBox vbox = new VBox(40, name, l, content, backBtn);
+    	VBox vbox = new VBox(40, title, content, backBtn);
     	vbox.setAlignment(Pos.CENTER);
     	vbox.setPadding(new Insets(20,20,20,20));
     	
