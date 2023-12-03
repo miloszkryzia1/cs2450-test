@@ -45,70 +45,73 @@ public class Main extends Application {
         Scene scene = new Scene(homePage(stage));
         scene.getStylesheets().add(getClass().getResource("Styling.css").toExternalForm());
         stage.setScene(scene);
-        //stage.setFullScreen(true);
+        stage.setFullScreen(true);
         stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);  // ctrl esc
         stage.setResizable(true);
         stage.show();
     }
     public BorderPane homePage(Stage stage){
 
-        MenuBar menuBar = new MenuBar();
-        // create the equipments menu
-        Menu equipment = new Menu();
-        Label e = new Label("Equipment");
-        e.setStyle("-fx-text-fill: white");
-        equipment.setGraphic(e);
+    	//Menu bar
+        MenuBar mb = new MenuBar();
+        
+        // Home Menu
+
+        Label label = new Label("Home");
+        label.setOnMouseClicked(event->
+        {
+        	start(stage);
+        });
+        Menu home = new Menu("", label);
+		// create the equipments menu
+        Menu equipment = new Menu("Equipment");
+        MenuItem item1 = new MenuItem("Illuminator");
         MenuItem item2 = new MenuItem("Small Animal immobilizers");
-        equipment.getItems().addAll(item2);
-        equipment.setStyle("-fx-text-fill: white");
-
+        equipment.getItems().addAll(item1,item2);
+       
         // create supplies menu
-        Menu supplies = new Menu();
-        Label s = new Label("Supplies");
-        s.setStyle("-fx-text-fill: white");
-        supplies.setGraphic(s);
-
+        Menu supplies = new Menu("Supplies");
         MenuItem item3 = new MenuItem("Lead Apron");
         MenuItem item4 = new MenuItem("Radiation Reducing Gloves");
         supplies.getItems().addAll(item3, item4);
 
         // create the parts menu
-        Menu parts = new Menu();
-        Label p = new Label("Parts");
-        p.setStyle("-fx-text-fill: white");
-        parts.setGraphic(p);
-        MenuItem MRI2 = new MenuItem("MRI");
-        parts.getItems().addAll(MRI2);
-
-        //testing
-        MRI2.setOnAction(event->
+        Menu parts = new Menu("Parts");
+        MenuItem item5 = new MenuItem("Collimator");
+        MenuItem item6 = new MenuItem("MRI");
+        parts.getItems().addAll(item5, item6);
+        
+        //Order Policy
+        Label label1 = new Label("Policy");
+        Menu policy = new Menu("", label1);
+        label1.setOnMouseClicked(event->
         {
-            getProductPage("MRI.txt" , stage);
+        	openLink("http://www.pnwx.com/Buy/");
         });
-
-        // create contact
-        Label contactLabel = new Label("Contact us");
-        Menu contactMenu = new Menu (null, contactLabel);
-        contactLabel.setStyle("-fx-text-fill: white");
-        contactLabel.setOnMouseClicked(event->{
-            // info
+        //===============Display products from menu=================
+        item1.setOnAction(event->{
+        	getProductPage("illuminators.txt" , stage);
         });
-
-
-        // create the about
-        Label aboutLabel = new Label ("About");
-        Menu about = new Menu(null, aboutLabel);
-        aboutLabel.setStyle("-fx-text-fill: white");
-        // set an action when about is clicked
-        aboutLabel.setOnMouseClicked(event->{
-            // info
+        item2.setOnAction(event->{
+        	getProductPage("immobilizer.txt" , stage);
         });
-
-        menuBar.getMenus().addAll(equipment, supplies, parts, about, contactMenu);
-        //menuBar.setPadding(new Insets(10));
-        menuBar.setPrefWidth(stage.getWidth());
-        menuBar.getStyleClass().add("menu-bar");
-
+        item3.setOnAction(event->{
+        	getProductPage("full_overlap_apron.txt" , stage);
+        });
+        item4.setOnAction(event->{
+        	getProductPage("glove.txt" , stage);
+        });
+        item5.setOnAction(event->{
+        	getProductPage("collimator.txt" , stage);
+        });
+        item6.setOnAction(event->{
+        	getProductPage("MRI.txt", stage);
+        });
+       
+        mb.getMenus().addAll(home, equipment, supplies, parts, policy);
+        //mb.setPadding(new Insets(10));
+        mb.setStyle("-fx-padding: 10 60 10 60;");
+        
         // search bar area
         Label name = new Label("Pacific North West X-Ray INC");
         name.getStyleClass().add("label-name");
@@ -292,22 +295,20 @@ public class Main extends Application {
         BackgroundImage bgImg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bgSize);
 
-        VBox testing = new VBox(menuBar, searchBox, mostPopularSection, browse);
+        VBox testing = new VBox(mb, searchBox, mostPopularSection, browse);
         testing.setAlignment(Pos.CENTER);
 
-        BorderPane home = new BorderPane();
-        home.setTop(testing);
+        BorderPane homeBp = new BorderPane();
+        homeBp.setTop(testing);
         //home.setTop(searchBox);
-        home.setBottom(storeVBox);
-        home.setBackground(new Background(bgImg));
+        homeBp.setBottom(storeVBox);
+        homeBp.setBackground(new Background(bgImg));
 
-        home.getStyleClass().add("root");
-        //home.setSpacing(10);
-        home.setPadding(new Insets(10));
+        homeBp.getStyleClass().add("root");
 
 
         // return the vbox, FIX LATER
-        return home;
+        return homeBp;
     }
 
 
@@ -468,6 +469,7 @@ public class Main extends Application {
 		borderPane.setTop(mb);
 		borderPane.setLeft(vbox2);
 		Scene scene = new Scene(borderPane);
+		scene.getStylesheets().add(getClass().getResource("Styling.css").toExternalForm());
 		stage.setScene(scene);
 		stage.setFullScreen(true);
 		stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);  // ctrl esc
@@ -721,7 +723,7 @@ public class Main extends Application {
     	bp.setCenter(vbox);
     	
     	Scene scene = new Scene(bp);
-    	scene.getStylesheets().add(new Details().getClass().getResource("Styling.css").toExternalForm());
+    	scene.getStylesheets().add(getClass().getResource("Styling.css").toExternalForm());
 
         stage.setScene(scene);
         stage.setFullScreen(true);
