@@ -225,7 +225,7 @@ public class Main extends Application {
         //HBox browseBox = new HBox(browse);
         //browseBox.setAlignment(Pos.CENTER);
         browse.setAlignment(Pos.CENTER);
-        browse.setPadding(new Insets(100,0,30,4));
+        browse.setPadding(new Insets(80,0,0,0));
         browse.setStyle("-fx-font-size: 20; -fx-text-fill: black");
 
         VBox firstRow = new VBox();
@@ -241,6 +241,7 @@ public class Main extends Application {
 
         Button lead = new Button("Lead Aprons");
         lead.getStyleClass().add("browse-lead");
+        lead.setStyle("-fx-background-color: transparent");
 
         lead.setOnAction(event->{
             getProductPage("full_overlap_apron.txt", stage);
@@ -248,6 +249,7 @@ public class Main extends Application {
 
 
         Button phantom = new Button("Medium MRI Phantom");
+        phantom.setStyle("-fx-background-color: transparent");
         phantom.getStyleClass().add("browse-MRI");
 
         phantom.setOnAction(event->{
@@ -261,14 +263,14 @@ public class Main extends Application {
         VBox secondRow = new VBox();
         // third image
         ImageView gloveImage = new ImageView(new Image("file:src/application/images/glove.png"));
-        gloveImage.setFitWidth(100);
-        gloveImage.setFitHeight(100);
+        gloveImage.setFitWidth(105);
+        gloveImage.setFitHeight(105);
         imageView.setPreserveRatio(true);
 
         // fourth image
         ImageView animalImage = new ImageView(new Image("file:src/application/images/immobilizer.png"));
-        animalImage.setFitWidth(100);
-        animalImage.setFitHeight(100);
+        animalImage.setFitWidth(120);
+        animalImage.setFitHeight(120);
         animalImage.setPreserveRatio(true);
 
         // create buttons for those images
@@ -283,17 +285,21 @@ public class Main extends Application {
             getProductPage("immobilizer.txt", stage);
         });
 
+
         radiationGloves.getStyleClass().add("browse-gloves");
+        radiationGloves.setStyle("-fx-background-color: transparent");
         smallAnimalButton.getStyleClass().add("browse-animal");
+        smallAnimalButton.setStyle("-fx-background-color: transparent");
 
         secondRow.getChildren().addAll(gloveImage, radiationGloves, animalImage, smallAnimalButton);
-        secondRow.setPadding(new Insets(10));
+        //secondRow.setPadding(new Insets(10));
         secondRow.setSpacing(15);
         secondRow.setAlignment(Pos.CENTER);
 
         HBox storeVBox = new HBox(firstRow, secondRow);
         storeVBox.setAlignment(Pos.CENTER);
-        storeVBox.setSpacing(100);
+        storeVBox.setSpacing(150);
+        //storeVBox.setPadding(new Insets(10,0, 30, 0));
 
 
         Image img = new Image("file:src/application/images/background.jpeg");
@@ -719,6 +725,7 @@ public class Main extends Application {
             default:
                 return;
         }
+
         VBox vbox = new VBox(40, title, content, backBtn);
         vbox.setAlignment(Pos.CENTER);
         vbox.setPadding(new Insets(20,20,20,20));
