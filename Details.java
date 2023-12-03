@@ -105,6 +105,37 @@ public class Details{
 			StackPane cell = new StackPane(contents[i-1]);
 			table.add(cell, 0, i);
 		}
+		
+		//remaining contents
+		for (int i = 1; i < 4; i++) {
+			for (int j = 1; j < 8; j++) {
+				if (i == 1 && j == 1) {
+					table.add(new StackPane(new Label("SPECIFY: XS,S,M,L,XL")), i, j);
+				}
+				else if (i == 1 && j == 2) {
+					table.add(new StackPane(new Label("2X")), i, j);
+				}
+				else if (i == 1 && j == 4) {
+					table.add(new StackPane(new Label("One Size Fits All")), i, j);
+				}
+				else if ((i == 2 && j == 1) || (i == 2 && j == 2) || (i == 2 && j == 4)){
+					table.add(new StackPane(new Label("Unisex")), i, j);
+				}
+				else if (i == 3) {
+					if (j == 1) { table.add(new StackPane(new Label("703 / $1,250.00")), i, j); }
+					else if (j == 2) { table.add(new StackPane(new Label("7032X / $1,335.00")), i, j); }
+					else if (j == 3) { table.add(new StackPane(new Label("CW / $95.00")), i, j); }
+					else if (j == 4) { table.add(new StackPane(new Label("REV-TC-KI-LF / $160.00")), i, j); }
+					else if (j == 5) { table.add(new StackPane(new Label("KTC / $16.00")), i, j); }
+					else if (j == 6) { table.add(new StackPane(new Label("BNME / $35.00")), i, j); }
+					else if (j == 7) { table.add(new StackPane(new Label("SNME / $35.00")), i, j); }
+				}
+				else {
+					table.add(new StackPane(new Label("-")), i, j);
+				}
+			}
+		}
+		
 		table.setGridLinesVisible(true);
 		table.setAlignment(Pos.CENTER);
 		styleTable(table, 4);
