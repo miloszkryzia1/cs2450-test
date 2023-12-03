@@ -1,6 +1,9 @@
 .root{
-    -fx-font-family: arial;
-    -fx-text-fill: white;
+    -fx-background-color: linear-gradient(to bottom, #ecf2e4,#c0dcc3, #8db9aa);
+    -fx-font-family: "Fira Sans", sans-serif;
+}
+.label {
+	-fx-font-size: 12.0pt;
 }
 .label-name{
     -fx-font-size: 26;
@@ -8,11 +11,9 @@
     -fx-text-fill : white;
 }
 .menu-bar {
-    -fx-background-color: transparent;
+    -fx-background-color: #c0dcc3;
     -fx-font-size: 15;
-    -fx-text-fill : white;
     -fx-spacing: 200;
-    -fx-padding: 0 5 0 5;
     -fx-alignment: CENTER;
 }
 
@@ -22,13 +23,6 @@
     -fx-background-radius: 110;
     -fx-prompt-text-fill: gray;
 }
-.button-search{
-    -fx-text-fill: white;
-    -fx-font-size: 16;
-    -fx-background-color: linear-gradient(to bottom, #cccccc, #999999);
-    -fx-background-radius: 100;
-}
-
 .browse-gloves{
     -fx-underline: true;
     -fx-font-size: 16;
@@ -48,4 +42,28 @@
     -fx-underline: true;
     -fx-font-size: 16;
     -fx-text-fill: white;
+}
+.label.desc-header {
+	-fx-font-weight: bold;
+}
+
+#product-name{
+	-fx-font-weight: bold;
+}
+
+
+.button {
+    -fx-min-width: 12em; /* Base width of the button */
+    -fx-min-height: 3em; /* Base height of the button */
+    -fx-background-color: #FFFFFF; /* White background */
+    -fx-text-fill: #000000; /* Black text color */
+    -fx-border-color: #000000; /* Black border color */
+    -fx-border-width: 2; /* Border width */
+    -fx-border-radius: 10; /* Rounded corners */
+    -fx-font-size: 10.0pt;
+    -fx-background-insets:2,0,0;
+}
+
+.menu-bar {
+	-fx-background-color: #c0dcc3;
 }
