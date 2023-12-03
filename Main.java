@@ -49,33 +49,42 @@ public class Main extends Application {
 
         MenuBar menuBar = new MenuBar();
         // create the equipments menu
-        Menu equipment = new Menu("Equipment");
+        Menu equipment = new Menu();
+        Label e = new Label("Equipment");
+        e.setStyle("-fx-text-fill: white");
+        equipment.setGraphic(e);
         MenuItem item2 = new MenuItem("Small Animal immobilizers");
         equipment.getItems().addAll(item2);
+        equipment.setStyle("-fx-text-fill: white");
 
         // create supplies menu
-        Menu supplies = new Menu("Supplies");
-        supplies.setStyle("-fx-text-fill: white");
+        Menu supplies = new Menu();
+        Label s = new Label("Supplies");
+        s.setStyle("-fx-text-fill: white");
+        supplies.setGraphic(s);
+
         MenuItem item3 = new MenuItem("Lead Apron");
         MenuItem item4 = new MenuItem("Radiation Reducing Gloves");
         supplies.getItems().addAll(item3, item4);
 
         // create the parts menu
-        Menu parts = new Menu("Parts");
-        parts.setStyle("-fx-text-fill: white");
+        Menu parts = new Menu();
+        Label p = new Label("Parts");
+        p.setStyle("-fx-text-fill: white");
+        parts.setGraphic(p);
         MenuItem MRI2 = new MenuItem("MRI");
         parts.getItems().addAll(MRI2);
 
         //testing
         MRI2.setOnAction(event->
         {
-        	getProductPage("MRI.txt" , stage);
+            getProductPage("MRI.txt" , stage);
         });
 
         // create contact
         Label contactLabel = new Label("Contact us");
         Menu contactMenu = new Menu (null, contactLabel);
-        contactMenu.setStyle("-fx-text-fill: white");
+        contactLabel.setStyle("-fx-text-fill: white");
         contactLabel.setOnMouseClicked(event->{
             // info
         });
@@ -84,7 +93,7 @@ public class Main extends Application {
         // create the about
         Label aboutLabel = new Label ("About");
         Menu about = new Menu(null, aboutLabel);
-        about.setStyle("-fx-text-fill: white");
+        aboutLabel.setStyle("-fx-text-fill: white");
         // set an action when about is clicked
         aboutLabel.setOnMouseClicked(event->{
             // info
@@ -106,9 +115,9 @@ public class Main extends Application {
         searchBox.setPadding(new Insets(30,0,0, 0));
 
         search.setPromptText("Search");
-        search.setPrefWidth(775);
-        search.setPrefHeight(58);
-        search.setMaxWidth(600);
+        search.setPrefWidth(650);
+        search.setPrefHeight(50);
+        search.setMaxWidth(500);
         search.getStyleClass().add("search-bar");
 
         searchButton.setPickOnBounds(true);
@@ -122,10 +131,10 @@ public class Main extends Application {
         mostPopular.setStyle("-fx-text-fill: white; -fx-font-size: 20; -fx-font-weight: bold;");
         // create an array of product images
         Image[] images = new Image[4];
-        images[0] = new Image("file:./res/test.png");
-        images[1] = new Image("file:./res/test2.png");
-        images[2] = new Image ("file:./res/test3.png");
-        images[3] = new Image("file:./res/test4.png");
+        images[0] = new Image("file:src/application/images/glove.png");
+        images[1] = new Image("file:src/application/images/illuminator.png");
+        images[2] = new Image ("file:src/application/images/immobilizer.png");
+        images[3] = new Image("file:src/application/images/collimator.png");
         ImageView imageView = new ImageView(images[0]);
         imageView.setFitWidth(200);
         imageView.setFitHeight(200);
@@ -185,12 +194,12 @@ public class Main extends Application {
         browse.setStyle("-fx-font-size: 16; -fx-text-fill: white");
 
         VBox firstRow = new VBox();
-        ImageView leadApron = new ImageView(new Image("file:./res/test.png"));
+        ImageView leadApron = new ImageView(new Image("file:src/application/images/full_overlap_apron.png"));
         leadApron.setFitWidth(100);
         leadApron.setFitHeight(100);
         imageView.setPreserveRatio(true);
 
-        ImageView mediumMRI = new ImageView(new Image("file:./res/test2.png"));
+        ImageView mediumMRI = new ImageView(new Image("file:src/application/images/MRI.png"));
         mediumMRI.setFitWidth(100);
         mediumMRI.setFitHeight(100);
         imageView.setPreserveRatio(true);
@@ -206,13 +215,13 @@ public class Main extends Application {
 
         VBox secondRow = new VBox();
         // third image
-        ImageView gloveImage = new ImageView(new Image("file:./res/test3.png"));
+        ImageView gloveImage = new ImageView(new Image("file:src/application/images/glove.png"));
         gloveImage.setFitWidth(100);
         gloveImage.setFitHeight(100);
         imageView.setPreserveRatio(true);
 
         // fourth image
-        ImageView animalImage = new ImageView(new Image("file:./res/test4.png"));
+        ImageView animalImage = new ImageView(new Image("file:src/application/images/immobilizer.png"));
         animalImage.setFitWidth(100);
         animalImage.setFitHeight(100);
         animalImage.setPreserveRatio(true);
@@ -246,7 +255,7 @@ public class Main extends Application {
             //code
         });
 
-        Image img = new Image("file:res/background.jpeg");
+        Image img = new Image("file:src/application/images/background.jpeg");
         BackgroundSize bgSize = new BackgroundSize(100, 100, true, true, true, true);
         BackgroundImage bgImg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bgSize);
@@ -268,7 +277,7 @@ public class Main extends Application {
         // return the vbox, FIX LATER
         return home;
     }
-    
+
 
     //================================== Product Page ==============================
 
@@ -279,37 +288,37 @@ public class Main extends Application {
      * @param stage Current stage
      */
     public void getProductPage(String filename, Stage stage) {
-		
-		//get data
-		Image pImage = null;
-		String pDescription = null;
-		
-		try {
-			Scanner scanner = new Scanner(new File("src/application/products/" + filename));
-			pTitle = scanner.nextLine();
-			pImage = new Image("file:src/application/images/" + scanner.nextLine());
-			pDescription = scanner.nextLine();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		//Menu bar
+
+        //get data
+        Image pImage = null;
+        String pDescription = null;
+
+        try {
+            Scanner scanner = new Scanner(new File("src/application/products/" + filename));
+            pTitle = scanner.nextLine();
+            pImage = new Image("file:src/application/images/" + scanner.nextLine());
+            pDescription = scanner.nextLine();
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        //Menu bar
         MenuBar mb = new MenuBar();
-        
+
         // Home Menu
 
         Label label = new Label("Home");
         label.setOnMouseClicked(event->
         {
-        	start(stage);
+            start(stage);
         });
         Menu home = new Menu("", label);
-		// create the equipments menu
+        // create the equipments menu
         Menu equipment = new Menu("Equipment");
         MenuItem item1 = new MenuItem("Illuminator");
         MenuItem item2 = new MenuItem("Small Animal immobilizers");
         equipment.getItems().addAll(item1,item2);
-       
+
         // create supplies menu
         Menu supplies = new Menu("Supplies");
         MenuItem item3 = new MenuItem("Lead Apron");
@@ -321,170 +330,170 @@ public class Main extends Application {
         MenuItem item5 = new MenuItem("Collimator");
         MenuItem item6 = new MenuItem("MRI");
         parts.getItems().addAll(item5, item6);
-        
+
         //Order Policy
         Label label1 = new Label("Policy");
         Menu policy = new Menu("", label1);
         label1.setOnMouseClicked(event->
         {
-        	openLink("http://www.pnwx.com/Buy/");
+            openLink("http://www.pnwx.com/Buy/");
         });
         //===============Display products from menu=================
         item1.setOnAction(event->{
-        	getProductPage("illuminators.txt" , stage);
+            getProductPage("illuminators.txt" , stage);
         });
         item2.setOnAction(event->{
-        	getProductPage("immobilizer.txt" , stage);
+            getProductPage("immobilizer.txt" , stage);
         });
         item3.setOnAction(event->{
-        	getProductPage("full_overlap_apron.txt" , stage);
+            getProductPage("full_overlap_apron.txt" , stage);
         });
         item4.setOnAction(event->{
-        	getProductPage("glove.txt" , stage);
+            getProductPage("glove.txt" , stage);
         });
         item5.setOnAction(event->{
-        	getProductPage("collimator.txt" , stage);
+            getProductPage("collimator.txt" , stage);
         });
         item6.setOnAction(event->{
-        	getProductPage("MRI.txt", stage);
+            getProductPage("MRI.txt", stage);
         });
-       
+
         mb.getMenus().addAll(home, equipment, supplies, parts, policy);
         //mb.setPadding(new Insets(10));
         mb.setStyle("-fx-padding: 10 60 10 60;");
-		//Image
-		ImageView pImgView = new ImageView();
-		pImgView.setImage(pImage);
-		pImgView.setFitHeight(500);
-		pImgView.setFitWidth(500);
-		pImgView.setPreserveRatio(true);
-		
-		//Animating
-		pImgView.setScaleX(1.0);
-	    pImgView.setScaleY(1.0);
-		ScaleTransition sTransition = new ScaleTransition(new Duration(500), pImgView);
-		sTransition.setFromX(1.0);
-		sTransition.setFromY(1.0);
-		sTransition.setToX(1.055);
-		sTransition.setToY(1.055);
-		
-		pImgView.setOnMouseEntered(event ->
-		{
-			sTransition.setRate(1.0);
-			sTransition.playFromStart();
-        });
-        pImgView.setOnMouseExited(event -> 
+        //Image
+        ImageView pImgView = new ImageView();
+        pImgView.setImage(pImage);
+        pImgView.setFitHeight(500);
+        pImgView.setFitWidth(500);
+        pImgView.setPreserveRatio(true);
+
+        //Animating
+        pImgView.setScaleX(1.0);
+        pImgView.setScaleY(1.0);
+        ScaleTransition sTransition = new ScaleTransition(new Duration(500), pImgView);
+        sTransition.setFromX(1.0);
+        sTransition.setFromY(1.0);
+        sTransition.setToX(1.055);
+        sTransition.setToY(1.055);
+
+        pImgView.setOnMouseEntered(event ->
         {
-            sTransition.setRate(-1.0); 
+            sTransition.setRate(1.0);
+            sTransition.playFromStart();
+        });
+        pImgView.setOnMouseExited(event ->
+        {
+            sTransition.setRate(-1.0);
             sTransition.play();
         });
-		//Desc
-		Label pDescText = new Label(pDescription);
-		pDescText.setPrefSize(400, 400);
-		pDescText.setWrapText(true);
-		
-		//Title
-		Label pTitleLabel = new Label(pTitle);
-		
-		//inline for Title
-		pTitleLabel.setStyle("-fx-font-size: 18pt; -fx-font-weight: bold");
-		//Button
-		Button p_details = new Button("Product Details");
-		//redirect to details
-		p_details.setOnAction(event -> {
-			getDetailsPage(filename, pTitle, stage.getScene(), stage);
-		});
-		
-		Button buy_button = new Button("Buy Now!");
-		// redirect to order form
-		buy_button.setOnAction(event->
-		{
-			openLink("http://www.pnwx.com/PNWX-OrderForm.pdf");
-		});
-		//============================Products' page Layout===================================
+        //Desc
+        Label pDescText = new Label(pDescription);
+        pDescText.setPrefSize(400, 400);
+        pDescText.setWrapText(true);
 
-		HBox buttonBox = new HBox(20, p_details, buy_button);
-		buttonBox.setAlignment(Pos.CENTER);
-		VBox vbox1 = new VBox(20, pDescText, buttonBox);
-		vbox1.setAlignment(Pos.TOP_RIGHT);
-		Pane pane = new Pane(pImgView);
-		HBox hbox1 = new HBox(20, pane, vbox1);
-		//HBox hbox1 = new HBox(20, pImgView, vbox1);
-		hbox1.setAlignment(Pos.CENTER);
-		Label warning = new Label("Please read order policy before placing the order.");
-		warning.setStyle("fx-font-size: 14pt;-fx-font-weight: bold");
-		Separator separator = new Separator(Orientation.HORIZONTAL);
-		VBox vbox2 = new VBox(20, pTitleLabel, hbox1, separator,warning);
-		vbox2.setAlignment(Pos.CENTER);
-		//VBox vbox3 = new VBox(25,mb, vbox2);
-		//vbox3.setAlignment(Pos.TOP_LEFT);
-		//HBox hbox = new HBox(30, pImgView, pDescText);
-		//VBox vbox = new VBox(20, pTitleLabel, hbox);
-		
-		
-		//Scene scene = new Scene(vbox3);
-		BorderPane borderPane = new BorderPane();
-		borderPane.setTop(mb);
-		borderPane.setLeft(vbox2);
-		Scene scene = new Scene(borderPane);
-		stage.setScene(scene);
-		//stage.setFullScreen(true);
-		stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);  // ctrl esc
+        //Title
+        Label pTitleLabel = new Label(pTitle);
+
+        //inline for Title
+        pTitleLabel.setStyle("-fx-font-size: 18pt; -fx-font-weight: bold");
+        //Button
+        Button p_details = new Button("Product Details");
+        //redirect to details
+        p_details.setOnAction(event -> {
+            getDetailsPage(filename, pTitle, stage.getScene(), stage);
+        });
+
+        Button buy_button = new Button("Buy Now!");
+        // redirect to order form
+        buy_button.setOnAction(event->
+        {
+            openLink("http://www.pnwx.com/PNWX-OrderForm.pdf");
+        });
+        //============================Products' page Layout===================================
+
+        HBox buttonBox = new HBox(20, p_details, buy_button);
+        buttonBox.setAlignment(Pos.CENTER);
+        VBox vbox1 = new VBox(20, pDescText, buttonBox);
+        vbox1.setAlignment(Pos.TOP_RIGHT);
+        Pane pane = new Pane(pImgView);
+        HBox hbox1 = new HBox(20, pane, vbox1);
+        //HBox hbox1 = new HBox(20, pImgView, vbox1);
+        hbox1.setAlignment(Pos.CENTER);
+        Label warning = new Label("Please read order policy before placing the order.");
+        warning.setStyle("fx-font-size: 14pt;-fx-font-weight: bold");
+        Separator separator = new Separator(Orientation.HORIZONTAL);
+        VBox vbox2 = new VBox(20, pTitleLabel, hbox1, separator,warning);
+        vbox2.setAlignment(Pos.CENTER);
+        //VBox vbox3 = new VBox(25,mb, vbox2);
+        //vbox3.setAlignment(Pos.TOP_LEFT);
+        //HBox hbox = new HBox(30, pImgView, pDescText);
+        //VBox vbox = new VBox(20, pTitleLabel, hbox);
+
+
+        //Scene scene = new Scene(vbox3);
+        BorderPane borderPane = new BorderPane();
+        borderPane.setTop(mb);
+        borderPane.setLeft(vbox2);
+        Scene scene = new Scene(borderPane);
+        stage.setScene(scene);
+        //stage.setFullScreen(true);
+        stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);  // ctrl esc
         stage.setResizable(true);
-	}
+    }
 
     //======================== Open Link Method==============================
     private void openLink(String url) {
         HostServices hostServices = getHostServices();
         hostServices.showDocument(url);
-	}
+    }
 
-    
+
     public static void getDetailsPage(String filename, String productName, Scene previousScene, Stage stage) {
-    	Label name = new Label(productName);
-    	Label l = new Label("Product Details");
-    	
-    	Button backBtn = new Button("Back");
-    	backBtn.setOnAction(event -> {
-    		stage.setScene(previousScene);
-    		stage.setFullScreen(true);
-    		stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH); // ctrl esc
-    		stage.setResizable(true);
-    	});
-    	
-    	// TODO needs an argument and check what product to display
-    	Parent content;
-    	switch (filename) {
-    	case ("collimator.txt"):
-    		content = Details.getCollimatorDetails();
-    		break;
-    	case ("full_overlap_apron.txt"):
-    		content = Details.getApronDetails();
-    		break; 
-    	case ("glove.txt"):
-    		content = Details.getGloveDetails();
-    		break;	
-    	case ("illuminators.txt"):
-    		content = Details.getIlluminatorDetails();
-    		break;
-    	case ("immobilizer.txt"):
-    		content = Details.getImmobilizerDetails();
-    		break; 
-    	case ("MRI.txt"):
-    		content = Details.getMriDetails();
-    		break;
-    	default:
-    		return;
-    	}
-    	
-    	VBox vbox = new VBox(20, name, l, content, backBtn);
-    	vbox.setAlignment(Pos.CENTER);
-    	Scene scene = new Scene(vbox);
-    	scene.getStylesheets().add(new Details().getClass().getResource("detailStyles.css").toExternalForm());
+        Label name = new Label(productName);
+        Label l = new Label("Product Details");
 
-    	stage.setScene(scene);
-		stage.setFullScreen(true);
-		stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH); // ctrl esc
-		stage.setResizable(true);
+        Button backBtn = new Button("Back");
+        backBtn.setOnAction(event -> {
+            stage.setScene(previousScene);
+            stage.setFullScreen(true);
+            stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH); // ctrl esc
+            stage.setResizable(true);
+        });
+
+        // TODO needs an argument and check what product to display
+        Parent content;
+        switch (filename) {
+            case ("collimator.txt"):
+                content = Details.getCollimatorDetails();
+                break;
+            case ("full_overlap_apron.txt"):
+                content = Details.getApronDetails();
+                break;
+            case ("glove.txt"):
+                content = Details.getGloveDetails();
+                break;
+            case ("illuminators.txt"):
+                content = Details.getIlluminatorDetails();
+                break;
+            case ("immobilizer.txt"):
+                content = Details.getImmobilizerDetails();
+                break;
+            case ("MRI.txt"):
+                content = Details.getMriDetails();
+                break;
+            default:
+                return;
+        }
+
+        VBox vbox = new VBox(20, name, l, content, backBtn);
+        vbox.setAlignment(Pos.CENTER);
+        Scene scene = new Scene(vbox);
+        scene.getStylesheets().add(new Details().getClass().getResource("detailStyles.css").toExternalForm());
+
+        stage.setScene(scene);
+        stage.setFullScreen(true);
+        stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH); // ctrl esc
+        stage.setResizable(true);
     }
 }
