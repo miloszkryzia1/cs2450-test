@@ -20,6 +20,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.*;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.paint.ImagePattern;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -36,6 +37,10 @@ public class Main extends Application {
     }
 
     public void start(Stage stage) {
+    	//Load fonts
+    	Font.loadFont(getClass().getResourceAsStream("fonts/FiraSans-Regular.ttf"), 12);
+    	Font.loadFont(getClass().getResourceAsStream("fonts/FiraSans-Bold.ttf"), 12);
+    	
         // background image
         Scene scene = new Scene(homePage(stage));
         scene.getStylesheets().add(getClass().getResource("Styling.css").toExternalForm());
@@ -590,11 +595,79 @@ public class Main extends Application {
         
     }
 
-    
-    public static void getDetailsPage(String filename, String productName, Scene previousScene, Stage stage) {
-    	Label name = new Label(productName);
-    	Label l = new Label("Product Details");
+  //======================== Open Details Page for a Specified Product ==============================
+    public void getDetailsPage(String filename, String productName, Scene previousScene, Stage stage) {
     	
+    	//Menu bar
+        MenuBar mb = new MenuBar();
+        
+        // Home Menu
+
+        Label label = new Label("Home");
+        label.setOnMouseClicked(event->
+        {
+        	start(stage);
+        });
+        Menu home = new Menu("", label);
+		// create the equipments menu
+        Menu equipment = new Menu("Equipment");
+        MenuItem item1 = new MenuItem("Illuminator");
+        MenuItem item2 = new MenuItem("Small Animal immobilizers");
+        equipment.getItems().addAll(item1,item2);
+       
+        // create supplies menu
+        Menu supplies = new Menu("Supplies");
+        MenuItem item3 = new MenuItem("Lead Apron");
+        MenuItem item4 = new MenuItem("Radiation Reducing Gloves");
+        supplies.getItems().addAll(item3, item4);
+
+        // create the parts menu
+        Menu parts = new Menu("Parts");
+        MenuItem item5 = new MenuItem("Collimator");
+        MenuItem item6 = new MenuItem("MRI");
+        parts.getItems().addAll(item5, item6);
+        
+        //Order Policy
+        Label label1 = new Label("Policy");
+        Menu policy = new Menu("", label1);
+        label1.setOnMouseClicked(event->
+        {
+        	openLink("http://www.pnwx.com/Buy/");
+        });
+        //===============Display products from menu=================
+        item1.setOnAction(event->{
+        	getProductPage("illuminators.txt" , stage);
+        });
+        item2.setOnAction(event->{
+        	getProductPage("immobilizer.txt" , stage);
+        });
+        item3.setOnAction(event->{
+        	getProductPage("full_overlap_apron.txt" , stage);
+        });
+        item4.setOnAction(event->{
+        	getProductPage("glove.txt" , stage);
+        });
+        item5.setOnAction(event->{
+        	getProductPage("collimator.txt" , stage);
+        });
+        item6.setOnAction(event->{
+        	getProductPage("MRI.txt", stage);
+        });
+       
+        mb.getMenus().addAll(home, equipment, supplies, parts, policy);
+        //mb.setPadding(new Insets(10));
+        mb.setStyle("-fx-padding: 10 60 10 60;");
+    	
+        //Title
+    	Label name = new Label(productName);
+    	name.setId("product-name");
+    	name.setStyle("-fx-font-size: 20.0pt");
+    	Label l = new Label("Product Details");
+    	l.setStyle("-fx-font-size: 20.0pt");
+    	VBox title = new VBox(name, l);
+    	title.setAlignment(Pos.CENTER);
+    	
+    	//Back button
     	Button backBtn = new Button("Back");
     	backBtn.setOnAction(event -> {
     		stage.setScene(previousScene);
@@ -628,9 +701,15 @@ public class Main extends Application {
     		return;
     	}
     	
-    	VBox vbox = new VBox(20, name, l, content, backBtn);
+    	VBox vbox = new VBox(40, title, content, backBtn);
     	vbox.setAlignment(Pos.CENTER);
-    	Scene scene = new Scene(vbox);
+    	vbox.setPadding(new Insets(20,20,20,20));
+    	
+    	BorderPane bp = new BorderPane();
+    	bp.setTop(mb);
+    	bp.setCenter(vbox);
+    	
+    	Scene scene = new Scene(bp);
     	scene.getStylesheets().add(new Details().getClass().getResource("detailStyles.css").toExternalForm());
 
     	stage.setScene(scene);
