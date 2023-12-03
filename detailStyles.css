@@ -10,23 +10,4 @@
 	-fx-font-size: 12.0pt;
 }
 
-.label.desc-header {
-	-fx-font-weight: bold;
-}
 
-#product-name{
-	-fx-font-weight: bold;
-}
-
-
-.button {
-    -fx-min-width: 12em; /* Base width of the button */
-    -fx-min-height: 3em; /* Base height of the button */
-    -fx-background-color: #FFFFFF; /* White background */
-    -fx-text-fill: #000000; /* Black text color */
-    -fx-border-color: #000000; /* Black border color */
-    -fx-border-width: 2; /* Border width */
-    -fx-border-radius: 10; /* Rounded corners */
-    -fx-font-size: 10.0pt;
-    -fx-background-insets:2,0,0;
-}

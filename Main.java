@@ -460,7 +460,7 @@ public class Main extends Application {
 		borderPane.setLeft(vbox2);
 		Scene scene = new Scene(borderPane);
 		stage.setScene(scene);
-		//stage.setFullScreen(true);
+		stage.setFullScreen(true);
 		stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);  // ctrl esc
         stage.setResizable(true);
 	}
@@ -710,10 +710,10 @@ public class Main extends Application {
     	bp.setCenter(vbox);
     	
     	Scene scene = new Scene(bp);
-    	scene.getStylesheets().add(new Details().getClass().getResource("detailStyles.css").toExternalForm());
+    	scene.getStylesheets().add(new Details().getClass().getResource("Styling.css").toExternalForm());
 
     	stage.setScene(scene);
-		//stage.setFullScreen(true);
+		stage.setFullScreen(true);
 		stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH); // ctrl esc
 		stage.setResizable(true);
     }

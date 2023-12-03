@@ -1,6 +1,6 @@
 .root{
-    -fx-font-family: arial;
-    -fx-text-fill: white;
+    -fx-background-color: #0ED1A2;
+    -fx-font-family: "Fira Sans", sans-serif;
 }
 .label-name{
     -fx-font-size: 26;
@@ -22,13 +22,6 @@
     -fx-background-radius: 110;
     -fx-prompt-text-fill: gray;
 }
-.button-search{
-    -fx-text-fill: white;
-    -fx-font-size: 16;
-    -fx-background-color: linear-gradient(to bottom, #cccccc, #999999);
-    -fx-background-radius: 100;
-}
-
 .browse-gloves{
     -fx-underline: true;
     -fx-font-size: 16;
@@ -48,4 +41,24 @@
     -fx-underline: true;
     -fx-font-size: 16;
     -fx-text-fill: white;
+}
+.label.desc-header {
+	-fx-font-weight: bold;
+}
+
+#product-name{
+	-fx-font-weight: bold;
+}
+
+
+.button {
+    -fx-min-width: 12em; /* Base width of the button */
+    -fx-min-height: 3em; /* Base height of the button */
+    -fx-background-color: #FFFFFF; /* White background */
+    -fx-text-fill: #000000; /* Black text color */
+    -fx-border-color: #000000; /* Black border color */
+    -fx-border-width: 2; /* Border width */
+    -fx-border-radius: 10; /* Rounded corners */
+    -fx-font-size: 10.0pt;
+    -fx-background-insets:2,0,0;
 }
