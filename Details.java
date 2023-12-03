@@ -42,6 +42,7 @@ public class Details{
 		table.add(new Label("$2,300.00"), 1, 1);
 		table.setGridLinesVisible(true);
 		table.setAlignment(Pos.CENTER);
+		styleTable(table);
 		
 		HBox hbox = new HBox(40, text, table);
 		hbox.setAlignment(Pos.CENTER);
@@ -93,6 +94,7 @@ public class Details{
 		}
 		table.setGridLinesVisible(true);
 		table.setAlignment(Pos.CENTER);
+		styleTable(table);
 		
 		HBox hbox = new HBox(40, text, table);
 		hbox.setAlignment(Pos.CENTER);
@@ -137,6 +139,7 @@ public class Details{
 		table.add(new Label("$47.00"), 2, 2);
 		table.setGridLinesVisible(true);
 		table.setAlignment(Pos.CENTER);
+		styleTable(table);
 		
 		HBox hbox = new HBox(40, text, table);
 		hbox.setAlignment(Pos.CENTER);
@@ -197,6 +200,7 @@ public class Details{
 		}
 		table.setAlignment(Pos.CENTER);
 		table.setGridLinesVisible(true);
+		styleTable(table);
 		
 		HBox hbox = new HBox(40, text, table);
 		hbox.setAlignment(Pos.CENTER);
@@ -259,6 +263,7 @@ public class Details{
 		
 		table.setAlignment(Pos.CENTER);
 		table.setGridLinesVisible(true);
+		styleTable(table);
 		
 		HBox hbox = new HBox(40, text, table);
 		hbox.setAlignment(Pos.CENTER);
@@ -352,7 +357,7 @@ public class Details{
 			
 			table.setAlignment(Pos.CENTER);
 			table.setGridLinesVisible(true);
-			alignTable(table);
+			styleTable(table);
 			
 			HBox hbox = new HBox(40, description, table);
 			hbox.setAlignment(Pos.CENTER);
@@ -360,13 +365,13 @@ public class Details{
 	}
 	
 	// Align elements in a table
-	public static void alignTable(GridPane table) {
+	public static void styleTable(GridPane table) {
 		for (int i = 0; i < table.getChildren().size(); i++){
 			Node node = table.getChildren().get(i);
 			if (node instanceof Label) {
 				GridPane.setHalignment((Label)node, HPos.CENTER);
 				((Label) node).setPadding(new Insets(10,10,10,10));
-				((Label) node).setStyle("-fx-font-size: 15.0pt");
+				((Label) node).setStyle("-fx-font-size: 13.0pt");
 			}
 		}
 	}
