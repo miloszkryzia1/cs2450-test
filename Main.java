@@ -20,6 +20,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.*;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.paint.ImagePattern;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -36,6 +37,10 @@ public class Main extends Application {
     }
 
     public void start(Stage stage) {
+    	//Load fonts
+    	Font.loadFont(getClass().getResourceAsStream("fonts/FiraSans-Regular.ttf"), 12);
+    	Font.loadFont(getClass().getResourceAsStream("fonts/FiraSans-Bold.ttf"), 12);
+    	
         // background image
         Scene scene = new Scene(homePage(stage));
         scene.getStylesheets().add(getClass().getResource("Styling.css").toExternalForm());
@@ -119,7 +124,34 @@ public class Main extends Application {
         search.setPrefHeight(50);
         search.setMaxWidth(500);
         search.getStyleClass().add("search-bar");
-
+        
+        // textField testing
+        searchButton.setOnAction(event ->
+        {
+        	String userInput = search.getText().toLowerCase();
+        	 if (userInput.contains("apron")) {
+        		 getProductPage("full_overlap_apron.txt" , stage);
+             } else if (userInput.contains("mri"))
+             {
+            	 getProductPage("MRI.txt" , stage);
+             } else if (userInput.contains("collimator"))
+             {
+            	 getProductPage("collimator.txt" , stage);
+             } else if (userInput.contains("glove"))
+             {
+            	 getProductPage("glove.txt" , stage);
+             } else if (userInput.contains("illuminator"))
+             {
+            	 getProductPage("illuminators.txt" , stage);
+             } else if (userInput.contains("small animal immobilizer"))
+             {
+            	 getProductPage("immobilizer.txt" , stage);
+             }	else
+             {
+            	 errorPage(stage);
+             }
+ 
+        });
         searchButton.setPickOnBounds(true);
         searchButton.setPrefHeight(55);
         searchButton.setMaxWidth(100);
@@ -412,33 +444,33 @@ public class Main extends Application {
         });
         //============================Products' page Layout===================================
 
-        HBox buttonBox = new HBox(20, p_details, buy_button);
-        buttonBox.setAlignment(Pos.CENTER);
-        VBox vbox1 = new VBox(20, pDescText, buttonBox);
-        vbox1.setAlignment(Pos.TOP_RIGHT);
-        Pane pane = new Pane(pImgView);
-        HBox hbox1 = new HBox(20, pane, vbox1);
-        //HBox hbox1 = new HBox(20, pImgView, vbox1);
-        hbox1.setAlignment(Pos.CENTER);
-        Label warning = new Label("Please read order policy before placing the order.");
-        warning.setStyle("fx-font-size: 14pt;-fx-font-weight: bold");
-        Separator separator = new Separator(Orientation.HORIZONTAL);
-        VBox vbox2 = new VBox(20, pTitleLabel, hbox1, separator,warning);
-        vbox2.setAlignment(Pos.CENTER);
-        //VBox vbox3 = new VBox(25,mb, vbox2);
-        //vbox3.setAlignment(Pos.TOP_LEFT);
-        //HBox hbox = new HBox(30, pImgView, pDescText);
-        //VBox vbox = new VBox(20, pTitleLabel, hbox);
-
-
-        //Scene scene = new Scene(vbox3);
-        BorderPane borderPane = new BorderPane();
-        borderPane.setTop(mb);
-        borderPane.setLeft(vbox2);
-        Scene scene = new Scene(borderPane);
-        stage.setScene(scene);
-        //stage.setFullScreen(true);
-        stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);  // ctrl esc
+		HBox buttonBox = new HBox(20, p_details, buy_button);
+		buttonBox.setAlignment(Pos.CENTER);
+		VBox vbox1 = new VBox(20, pDescText, buttonBox);
+		vbox1.setAlignment(Pos.TOP_RIGHT);
+		Pane pane = new Pane(pImgView);
+		HBox hbox1 = new HBox(20, pane, vbox1);
+		//HBox hbox1 = new HBox(20, pImgView, vbox1);
+		hbox1.setAlignment(Pos.CENTER);
+		Label warning = new Label("Please read order policy before placing the order.");
+		warning.setStyle("fx-font-size: 14pt;-fx-font-weight: bold");
+		Separator separator = new Separator(Orientation.HORIZONTAL);
+		VBox vbox2 = new VBox(20, pTitleLabel, hbox1, separator,warning);
+		vbox2.setAlignment(Pos.CENTER);
+		//VBox vbox3 = new VBox(25,mb, vbox2);
+		//vbox3.setAlignment(Pos.TOP_LEFT);
+		//HBox hbox = new HBox(30, pImgView, pDescText);
+		//VBox vbox = new VBox(20, pTitleLabel, hbox);
+		
+		
+		//Scene scene = new Scene(vbox3);
+		BorderPane borderPane = new BorderPane();
+		borderPane.setTop(mb);
+		borderPane.setLeft(vbox2);
+		Scene scene = new Scene(borderPane);
+		stage.setScene(scene);
+		stage.setFullScreen(true);
+		stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);  // ctrl esc
         stage.setResizable(true);
     }
 
@@ -449,47 +481,247 @@ public class Main extends Application {
     }
 
 
-    public static void getDetailsPage(String filename, String productName, Scene previousScene, Stage stage) {
-        Label name = new Label(productName);
-        Label l = new Label("Product Details");
+    //==================== Error Page ======================================
+    public void errorPage(Stage stage)
+    {
+    	Label errormsg = new Label("No Matches - Please revive your query and try again! ");
+    	
+    	//Menu bar
+        MenuBar mb = new MenuBar();
+        
+        // Home Menu
 
-        Button backBtn = new Button("Back");
-        backBtn.setOnAction(event -> {
-            stage.setScene(previousScene);
-            stage.setFullScreen(true);
-            stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH); // ctrl esc
-            stage.setResizable(true);
+        Label label = new Label("Home");
+        label.setOnMouseClicked(event->
+        {
+        	start(stage);
         });
+        Menu home = new Menu("", label);
+		// create the equipments menu
+        Menu equipment = new Menu("Equipment");
+        MenuItem item1 = new MenuItem("Illuminator");
+        MenuItem item2 = new MenuItem("Small Animal immobilizers");
+        equipment.getItems().addAll(item1,item2);
+       
+        // create supplies menu
+        Menu supplies = new Menu("Supplies");
+        MenuItem item3 = new MenuItem("Lead Apron");
+        MenuItem item4 = new MenuItem("Radiation Reducing Gloves");
+        supplies.getItems().addAll(item3, item4);
 
-        // TODO needs an argument and check what product to display
-        Parent content;
-        switch (filename) {
-            case ("collimator.txt"):
-                content = Details.getCollimatorDetails();
-                break;
-            case ("full_overlap_apron.txt"):
-                content = Details.getApronDetails();
-                break;
-            case ("glove.txt"):
-                content = Details.getGloveDetails();
-                break;
-            case ("illuminators.txt"):
-                content = Details.getIlluminatorDetails();
-                break;
-            case ("immobilizer.txt"):
-                content = Details.getImmobilizerDetails();
-                break;
-            case ("MRI.txt"):
-                content = Details.getMriDetails();
-                break;
-            default:
-                return;
-        }
+        // create the parts menu
+        Menu parts = new Menu("Parts");
+        MenuItem item5 = new MenuItem("Collimator");
+        MenuItem item6 = new MenuItem("MRI");
+        parts.getItems().addAll(item5, item6);
+        
+        //Order Policy
+        Label label1 = new Label("Policy");
+        Menu policy = new Menu("", label1);
+        label1.setOnMouseClicked(event->
+        {
+        	openLink("http://www.pnwx.com/Buy/");
+        });
+        //===============Display products from menu=================
+        item1.setOnAction(event->{
+        	getProductPage("illuminators.txt" , stage);
+        });
+        item2.setOnAction(event->{
+        	getProductPage("immobilizer.txt" , stage);
+        });
+        item3.setOnAction(event->{
+        	getProductPage("full_overlap_apron.txt" , stage);
+        });
+        item4.setOnAction(event->{
+        	getProductPage("glove.txt" , stage);
+        });
+        item5.setOnAction(event->{
+        	getProductPage("collimator.txt" , stage);
+        });
+        item6.setOnAction(event->{
+        	getProductPage("MRI.txt", stage);
+        });
+       
+        mb.getMenus().addAll(home, equipment, supplies, parts, policy);
+        //mb.setPadding(new Insets(10));
+        mb.setStyle("-fx-padding: 10 60 10 60;");
+        
+        Label name = new Label("Pacific North West X-Ray INC");
+        name.getStyleClass().add("label-name");
+        TextField search = new TextField();
+        Button searchButton = new Button("Go!");
+        HBox searchBox = new HBox(name, search, searchButton);
+        searchBox.setAlignment(Pos.CENTER);
+        searchBox.setSpacing(10);
+        searchBox.setPadding(new Insets(30,0,0, 0));
 
-        VBox vbox = new VBox(20, name, l, content, backBtn);
-        vbox.setAlignment(Pos.CENTER);
-        Scene scene = new Scene(vbox);
-        scene.getStylesheets().add(new Details().getClass().getResource("detailStyles.css").toExternalForm());
+        search.setPromptText("Search");
+        search.setPrefWidth(775);
+        search.setPrefHeight(58);
+        search.setMaxWidth(600);
+        search.getStyleClass().add("search-bar");
+        
+        searchButton.setOnAction(event ->
+        {
+        	String userInput = search.getText().toLowerCase();
+        	 if (userInput.contains("apron")) {
+        		 getProductPage("full_overlap_apron.txt" , stage);
+             } else if (userInput.contains("mri"))
+             {
+            	 getProductPage("MRI.txt" , stage);
+             } else if (userInput.contains("collimator"))
+             {
+            	 getProductPage("collimator.txt" , stage);
+             } else if (userInput.contains("glove"))
+             {
+            	 getProductPage("glove.txt" , stage);
+             } else if (userInput.contains("illuminator"))
+             {
+            	 getProductPage("illuminators.txt" , stage);
+             } else if (userInput.contains("small animal immobilizer"))
+             {
+            	 getProductPage("immobilizer.txt" , stage);
+             }	else
+             {
+            	 errorPage(stage);
+             }
+ 
+        });
+        
+        HBox hbox1 = new HBox(mb);
+        hbox1.setAlignment(Pos.CENTER);
+
+		VBox vbox1 = new VBox(5, errormsg, searchBox);
+		vbox1.setAlignment(Pos.CENTER);
+		//Scene scene = new Scene(vbox3);
+		BorderPane borderPane = new BorderPane();
+		borderPane.setTop(mb);
+		borderPane.setLeft(vbox1);
+		Scene scene = new Scene(borderPane);
+		stage.setScene(scene);
+		//stage.setFullScreen(true);
+		stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);  // ctrl esc
+        stage.setResizable(true);
+        
+        
+    }
+
+  //======================== Open Details Page for a Specified Product ==============================
+    public void getDetailsPage(String filename, String productName, Scene previousScene, Stage stage) {
+    	
+    	//Menu bar
+        MenuBar mb = new MenuBar();
+        
+        // Home Menu
+
+        Label label = new Label("Home");
+        label.setOnMouseClicked(event->
+        {
+        	start(stage);
+        });
+        Menu home = new Menu("", label);
+		// create the equipments menu
+        Menu equipment = new Menu("Equipment");
+        MenuItem item1 = new MenuItem("Illuminator");
+        MenuItem item2 = new MenuItem("Small Animal immobilizers");
+        equipment.getItems().addAll(item1,item2);
+       
+        // create supplies menu
+        Menu supplies = new Menu("Supplies");
+        MenuItem item3 = new MenuItem("Lead Apron");
+        MenuItem item4 = new MenuItem("Radiation Reducing Gloves");
+        supplies.getItems().addAll(item3, item4);
+
+        // create the parts menu
+        Menu parts = new Menu("Parts");
+        MenuItem item5 = new MenuItem("Collimator");
+        MenuItem item6 = new MenuItem("MRI");
+        parts.getItems().addAll(item5, item6);
+        
+        //Order Policy
+        Label label1 = new Label("Policy");
+        Menu policy = new Menu("", label1);
+        label1.setOnMouseClicked(event->
+        {
+        	openLink("http://www.pnwx.com/Buy/");
+        });
+        //===============Display products from menu=================
+        item1.setOnAction(event->{
+        	getProductPage("illuminators.txt" , stage);
+        });
+        item2.setOnAction(event->{
+        	getProductPage("immobilizer.txt" , stage);
+        });
+        item3.setOnAction(event->{
+        	getProductPage("full_overlap_apron.txt" , stage);
+        });
+        item4.setOnAction(event->{
+        	getProductPage("glove.txt" , stage);
+        });
+        item5.setOnAction(event->{
+        	getProductPage("collimator.txt" , stage);
+        });
+        item6.setOnAction(event->{
+        	getProductPage("MRI.txt", stage);
+        });
+       
+        mb.getMenus().addAll(home, equipment, supplies, parts, policy);
+        //mb.setPadding(new Insets(10));
+        mb.setStyle("-fx-padding: 10 60 10 60;");
+    	
+        //Title
+    	Label name = new Label(productName);
+    	name.setId("product-name");
+    	name.setStyle("-fx-font-size: 20.0pt");
+    	Label l = new Label("Product Details");
+    	l.setStyle("-fx-font-size: 20.0pt");
+    	VBox title = new VBox(name, l);
+    	title.setAlignment(Pos.CENTER);
+    	
+    	//Back button
+    	Button backBtn = new Button("Back");
+    	backBtn.setOnAction(event -> {
+    		stage.setScene(previousScene);
+    		stage.setFullScreen(true);
+    		stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH); // ctrl esc
+    		stage.setResizable(true);
+    	});
+    	
+    	// TODO needs an argument and check what product to display
+    	Parent content;
+    	switch (filename) {
+    	case ("collimator.txt"):
+    		content = Details.getCollimatorDetails();
+    		break;
+    	case ("full_overlap_apron.txt"):
+    		content = Details.getApronDetails();
+    		break; 
+    	case ("glove.txt"):
+    		content = Details.getGloveDetails();
+    		break;	
+    	case ("illuminators.txt"):
+    		content = Details.getIlluminatorDetails();
+    		break;
+    	case ("immobilizer.txt"):
+    		content = Details.getImmobilizerDetails();
+    		break; 
+    	case ("MRI.txt"):
+    		content = Details.getMriDetails();
+    		break;
+    	default:
+    		return;
+    	}
+    	
+    	VBox vbox = new VBox(40, title, content, backBtn);
+    	vbox.setAlignment(Pos.CENTER);
+    	vbox.setPadding(new Insets(20,20,20,20));
+    	
+    	BorderPane bp = new BorderPane();
+    	bp.setTop(mb);
+    	bp.setCenter(vbox);
+    	
+    	Scene scene = new Scene(bp);
+    	scene.getStylesheets().add(new Details().getClass().getResource("Styling.css").toExternalForm());
 
         stage.setScene(scene);
         stage.setFullScreen(true);
