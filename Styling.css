@@ -56,7 +56,6 @@
 	-fx-font-weight: bold;
 }
 
-
 .button {
     -fx-min-width: 5em; /* Base width of the button */
     -fx-background-color: linear-gradient(to bottom, #cccccc, #999999);

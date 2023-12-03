@@ -719,7 +719,6 @@ public class Main extends Application {
             default:
                 return;
         }
-
         VBox vbox = new VBox(40, title, content, backBtn);
         vbox.setAlignment(Pos.CENTER);
         vbox.setPadding(new Insets(20,20,20,20));
