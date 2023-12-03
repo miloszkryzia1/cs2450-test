@@ -430,7 +430,7 @@ public class Details{
 			Node node = table.getChildren().get(i);
 			if (node instanceof StackPane) {
 				if (i < columnCount) {
-					((StackPane)node).setBackground(new Background(new BackgroundFill(Color.web("#057D5D"), CornerRadii.EMPTY, Insets.EMPTY)));
+					((StackPane)node).setBackground(new Background(new BackgroundFill(Color.web("#589169"), CornerRadii.EMPTY, Insets.EMPTY)));
 					if (((StackPane)node).getChildren().get(0) instanceof Label) {
 						((Label)((StackPane)node).getChildren().get(0)).setPadding(new Insets(10,10,10,10));
 						((Label)((StackPane)node).getChildren().get(0)).setStyle("-fx-font-size: 12.5pt");
