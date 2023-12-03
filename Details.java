@@ -1,6 +1,7 @@
 package application;
 
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -339,8 +340,10 @@ public class Details{
 				new Label("Your Price")
 			};
 			for (int i = 0; i < titles.length; i++) {
-				titles[i].getStyleClass().add("table-header");
-				table.add(titles[i], i, 0);
+				StackPane cell = new StackPane(titles[i]);
+				//cell.getStyleClass().add("table-header");
+				cell.setBackground(new Background(new BackgroundFill(Color.web("#057D5D"), CornerRadii.EMPTY, Insets.EMPTY)));
+				table.add(cell, i, 0);
 			}
 			Label[] contents = {
 					new Label("09-301"),
