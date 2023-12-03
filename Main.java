@@ -57,26 +57,39 @@ public class Main extends Application {
         equipment.getItems().addAll(item2);
         equipment.setStyle("-fx-text-fill: white");
 
+        // create an event for the small animal immobilizer
+        item2.setOnAction(event->{
+            getProductPage("immobilizer.txt", stage);
+        });
+
         // create supplies menu
         Menu supplies = new Menu();
+        // do a label to change the text fill
         Label s = new Label("Supplies");
         s.setStyle("-fx-text-fill: white");
         supplies.setGraphic(s);
-
+        // create the menu items for the supplies menu
         MenuItem item3 = new MenuItem("Lead Apron");
         MenuItem item4 = new MenuItem("Radiation Reducing Gloves");
         supplies.getItems().addAll(item3, item4);
+
+        item3.setOnAction(event->{
+            getProductPage("full_overlap_apron.txt", stage);
+        });
+        item4.setOnAction(event->{
+            getProductPage("glove.txt", stage);
+        });
 
         // create the parts menu
         Menu parts = new Menu();
         Label p = new Label("Parts");
         p.setStyle("-fx-text-fill: white");
         parts.setGraphic(p);
-        MenuItem MRI2 = new MenuItem("MRI");
-        parts.getItems().addAll(MRI2);
+        // menu item for parts
+        MenuItem MRI = new MenuItem("MRI");
+        parts.getItems().addAll(MRI);
 
-        //testing
-        MRI2.setOnAction(event->
+        MRI.setOnAction(event->
         {
             getProductPage("MRI.txt" , stage);
         });
@@ -204,10 +217,20 @@ public class Main extends Application {
         mediumMRI.setFitHeight(100);
         imageView.setPreserveRatio(true);
 
-        Label lead = new Label("Lead Aprons");
+        Button lead = new Button("Lead Aprons");
         lead.getStyleClass().add("browse-lead");
-        Label phantom = new Label("Medium MRI Phantom");
+
+        lead.setOnAction(event->{
+            getProductPage("full_overlap_apron.txt", stage);
+        });
+
+
+        Button phantom = new Button("Medium MRI Phantom");
         phantom.getStyleClass().add("browse-MRI");
+
+        phantom.setOnAction(event->{
+            getProductPage("MRI.txt", stage);
+        });
 
         firstRow.getChildren().addAll(leadApron, lead,mediumMRI, phantom);
         firstRow.setSpacing(15);
@@ -226,13 +249,23 @@ public class Main extends Application {
         animalImage.setFitHeight(100);
         animalImage.setPreserveRatio(true);
 
-        Label radiationGloves = new Label("Radiation Reducing gloves");
-        Label smallAnimalLabel = new Label("Small Animal Immobilizers");
+        // create buttons for those images
+        Button radiationGloves = new Button("Radiation Reducing gloves");
+        Button smallAnimalButton = new Button("Small Animal Immobilizers");
+
+        radiationGloves.setOnAction(event->{
+            getProductPage("glove.txt", stage);
+        });
+
+        smallAnimalButton.setOnAction(event->{
+            getProductPage("immobilizer.txt", stage);
+        });
+
 
         radiationGloves.getStyleClass().add("browse-gloves");
-        smallAnimalLabel.getStyleClass().add("browse-animal");
+        smallAnimalButton.getStyleClass().add("browse-animal");
 
-        secondRow.getChildren().addAll(gloveImage, radiationGloves, animalImage, smallAnimalLabel);
+        secondRow.getChildren().addAll(gloveImage, radiationGloves, animalImage, smallAnimalButton);
         //secondRow.setPadding(new Insets(10));
         secondRow.setSpacing(15);
         secondRow.setAlignment(Pos.CENTER);
@@ -240,20 +273,6 @@ public class Main extends Application {
         HBox storeVBox = new HBox(firstRow, secondRow);
         storeVBox.setAlignment(Pos.CENTER);
         storeVBox.setSpacing(100);
-
-        // set actions for the labels
-        lead.setOnMouseClicked(event->{
-            // code
-        });
-        phantom.setOnMouseClicked(event->{
-            //code
-        });
-        radiationGloves.setOnMouseClicked(event->{
-            // code
-        });
-        smallAnimalLabel.setOnMouseClicked(event->{
-            //code
-        });
 
         Image img = new Image("file:src/application/images/background.jpeg");
         BackgroundSize bgSize = new BackgroundSize(100, 100, true, true, true, true);
