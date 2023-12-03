@@ -39,16 +39,14 @@ public class Details{
 		//Table
 		GridPane table = new GridPane();
 		Label stockNumHeader = new Label("Stock #");
-		stockNumHeader.getStyleClass().add("table-header");
 		Label priceHeader = new Label("Your Price");
-		priceHeader.getStyleClass().add("table-header");
-		table.add(new Label("R221"), 0, 1);
-		table.add(stockNumHeader, 0, 0);
-		table.add(priceHeader, 1, 0);
-		table.add(new Label("$2,300.00"), 1, 1);
+		table.add(new StackPane(stockNumHeader), 0, 0);
+		table.add(new StackPane(priceHeader), 1, 0);
+		table.add(new StackPane(new Label("R221")), 0, 1);
+		table.add(new StackPane(new Label("$2,300.00")), 1, 1);
 		table.setGridLinesVisible(true);
 		table.setAlignment(Pos.CENTER);
-		styleTable(table);
+		styleTable(table, 2);
 		
 		HBox hbox = new HBox(40, description, table);
 		hbox.setAlignment(Pos.CENTER);
@@ -87,10 +85,10 @@ public class Details{
 			new Label("Stock # / Your Price")
 		};
 		for (int i = 0; i < titles.length; i++) {
-			table.add(titles[i], i, 0);
-			titles[i].getStyleClass().add("table-header");
+			StackPane cell = new StackPane(titles[i]);
+			table.add(cell, i, 0);
 		}
-		Label[] types = {
+		Label[] contents = {
 			new Label("Revolution Full Overlap\r\n"
 					+ "Lumbar Vest/Skirt"),
 			new Label("Revolution Full Overlap\r\n"
@@ -103,12 +101,13 @@ public class Details{
 			new Label("Block Embroidery, 1 line"),
 			new Label("Script Embroidery, 1 line")
 		};
-		for (int i = 1; i <= types.length; i++) {
-			table.add(types[i-1], 0, i);
+		for (int i = 1; i <= contents.length; i++) {
+			StackPane cell = new StackPane(contents[i-1]);
+			table.add(cell, 0, i);
 		}
 		table.setGridLinesVisible(true);
 		table.setAlignment(Pos.CENTER);
-		styleTable(table);
+		styleTable(table, 4);
 		
 		HBox hbox = new HBox(40, description, table);
 		hbox.setAlignment(Pos.CENTER);
@@ -145,19 +144,19 @@ public class Details{
 				new Label("Your Price")
 		};
 		for (int i = 0; i < titles.length; i++) {
-			table.add(titles[i], i, 0);
-			titles[i].getStyleClass().add("table-header");
+			StackPane cell = new StackPane(titles[i]);
+			table.add(cell, i, 0);
 		}
 		
-		table.add(new Label("RR1"), 0, 1);
-		table.add(new Label("RR2"), 0, 2);
-		table.add(new Label("0.0088\" (.24mm)"), 1, 1);
-		table.add(new Label("0.012\" (.28mm)"), 1, 2);
-		table.add(new Label("$44.00"), 2, 1);
-		table.add(new Label("$47.00"), 2, 2);
+		table.add(new StackPane(new Label("RR1")), 0, 1);
+		table.add(new StackPane(new Label("RR2")), 0, 2);
+		table.add(new StackPane(new Label("0.0088\" (.24mm)")), 1, 1);
+		table.add(new StackPane(new Label("0.012\" (.28mm)")), 1, 2);
+		table.add(new StackPane(new Label("$44.00")), 2, 1);
+		table.add(new StackPane(new Label("$47.00")), 2, 2);
 		table.setGridLinesVisible(true);
 		table.setAlignment(Pos.CENTER);
-		styleTable(table);
+		styleTable(table, 3);
 		
 		HBox hbox = new HBox(40, description, table);
 		hbox.setAlignment(Pos.CENTER);
@@ -193,9 +192,8 @@ public class Details{
 			new Label("Your Price")
 		};
 		for (int i = 0; i < titles.length; i++) {
-			table.add(titles[i], i, 0);
-			titles[i].getStyleClass().add("table-header");
-			titles[i].setAlignment(Pos.CENTER);
+			StackPane cell = new StackPane(titles[i]);
+			table.add(cell, i, 0);
 		}
 		Label[] contents = {
 			new Label("VBS-10"),
@@ -217,13 +215,14 @@ public class Details{
 		int k = 0;
 		for (int i = 0; i < titles.length; i++) {
 			for (int j = 1; j <= 3; j++) {
-				table.add(contents[k], i, j);
+				StackPane cell = new StackPane(contents[k]);
+				table.add(cell, i, j);
 				k++;
 			}
 		}
 		table.setAlignment(Pos.CENTER);
 		table.setGridLinesVisible(true);
-		styleTable(table);
+		styleTable(table, 5);
 		
 		HBox hbox = new HBox(40, description, table);
 		hbox.setAlignment(Pos.CENTER);
@@ -237,8 +236,7 @@ public class Details{
 		header.getStyleClass().add("desc-header");
 		
 		//Description
-		Label text = new Label("Features:\r\n"
-				+ "   - \"Techo-Tuff\" Black Vinyl.\r\n"
+		Label text = new Label("- \"Techo-Tuff\" Black Vinyl.\r\n"
 				+ "   - Light and extremely durable, radiolucent design.\r\n"
 				+ "   - Unique v-shaped design to reduce motion and prevent falls during procedures.\r\n"
 				+ "   - Included hook & loop straps quickly and conveniently attach anywhere\r\n"
@@ -258,8 +256,8 @@ public class Details{
 			new Label("Your Price")
 		};
 		for (int i = 0; i < titles.length; i++) {
-			titles[i].getStyleClass().add("table-header");
-			table.add(titles[i], i, 0);
+			StackPane cell = new StackPane(titles[i]);
+			table.add(cell, i, 0);
 		}
 		Label[] contents = {
 				new Label("VIT-X"),
@@ -286,14 +284,15 @@ public class Details{
 		int k = 0;
 		for (int i = 0; i < titles.length; i++) {
 			for (int j = 1; j <= 3; j++) {
-				table.add(contents[k], i, j);
+				StackPane cell = new StackPane(contents[k]);
+				table.add(cell, i, j);
 				k++;
 			}
 		}
 		
 		table.setAlignment(Pos.CENTER);
 		table.setGridLinesVisible(true);
-		styleTable(table);
+		styleTable(table, 4);
 		
 		HBox hbox = new HBox(40, description, table);
 		hbox.setAlignment(Pos.CENTER);
@@ -341,8 +340,6 @@ public class Details{
 			};
 			for (int i = 0; i < titles.length; i++) {
 				StackPane cell = new StackPane(titles[i]);
-				//cell.getStyleClass().add("table-header");
-				cell.setBackground(new Background(new BackgroundFill(Color.web("#057D5D"), CornerRadii.EMPTY, Insets.EMPTY)));
 				table.add(cell, i, 0);
 			}
 			Label[] contents = {
@@ -381,14 +378,15 @@ public class Details{
 			int k = 0;
 			for (int i = 0; i < titles.length; i++) {
 				for (int j = 1; j <= 3; j++) {
-					table.add(contents[k], i, j);
+					StackPane cell = new StackPane(contents[k]);
+					table.add(cell, i, j);
 					k++;
 				}
 			}
 			
 			table.setAlignment(Pos.CENTER);
 			table.setGridLinesVisible(true);
-			styleTable(table);
+			styleTable(table, 5);
 			
 			HBox hbox = new HBox(40, description, table);
 			hbox.setAlignment(Pos.CENTER);
@@ -396,13 +394,26 @@ public class Details{
 	}
 	
 	// Align elements in a table
-	public static void styleTable(GridPane table) {
+	public static void styleTable(GridPane table, int columnCount) {
 		for (int i = 0; i < table.getChildren().size(); i++){
 			Node node = table.getChildren().get(i);
-			if (node instanceof Label) {
-				GridPane.setHalignment((Label)node, HPos.CENTER);
-				((Label) node).setPadding(new Insets(10,10,10,10));
-				((Label) node).setStyle("-fx-font-size: 12.5pt");
+			if (node instanceof StackPane) {
+				if (i < columnCount) {
+					((StackPane)node).setBackground(new Background(new BackgroundFill(Color.web("#057D5D"), CornerRadii.EMPTY, Insets.EMPTY)));
+					if (((StackPane)node).getChildren().get(0) instanceof Label) {
+						((Label)((StackPane)node).getChildren().get(0)).setPadding(new Insets(10,10,10,10));
+						((Label)((StackPane)node).getChildren().get(0)).setStyle("-fx-font-size: 12.5pt");
+						((Label)((StackPane)node).getChildren().get(0)).setTextFill(Color.WHITE);
+					}
+				}
+				else {
+					((StackPane)node).setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+					if (((StackPane)node).getChildren().get(0) instanceof Label) {
+						((Label)((StackPane)node).getChildren().get(0)).setPadding(new Insets(10,10,10,10));
+						((Label)((StackPane)node).getChildren().get(0)).setStyle("-fx-font-size: 12.5pt");
+						((Label)((StackPane)node).getChildren().get(0)).setTextFill(Color.BLACK);
+					}
+				}
 			}
 		}
 	}

@@ -10,12 +10,6 @@
 	-fx-font-size: 12.0pt;
 }
 
-/* Set the text color of labels with class "table-header" to white */
-.label.table-header {
-    -fx-text-fill: white;
-    -fx-background-color: #057D5D;
-}
-
 .label.desc-header {
 	-fx-font-weight: bold;
 }
