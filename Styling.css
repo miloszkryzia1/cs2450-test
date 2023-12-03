@@ -8,7 +8,7 @@
 .label-name{
     -fx-font-size: 26;
     -fx-font-weight: bold;
-    -fx-text-fill : white;
+    -fx-text-fill : black;
 }
 .menu-bar {
     -fx-background-color: #c0dcc3;
@@ -23,25 +23,30 @@
     -fx-background-radius: 110;
     -fx-prompt-text-fill: gray;
 }
+
 .browse-gloves{
     -fx-underline: true;
     -fx-font-size: 16;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
+    -fx-background-color: transparent;
 }
 .browse-lead{
     -fx-underline: true;
     -fx-font-size: 16;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
+    -fx-background-color: transparent;
 }
 .browse-MRI{
     -fx-underline: true;
     -fx-font-size: 16;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
+    -fx-background-color: transparent;
 }
 .browse-animal{
     -fx-underline: true;
     -fx-font-size: 16;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
+    -fx-background-color: transparent;
 }
 .label.desc-header {
 	-fx-font-weight: bold;
@@ -53,13 +58,12 @@
 
 
 .button {
-    -fx-min-width: 12em; /* Base width of the button */
+    -fx-min-width: 5em; /* Base width of the button */
+    -fx-background-color: linear-gradient(to bottom, #cccccc, #999999);
     -fx-min-height: 3em; /* Base height of the button */
     -fx-background-color: #FFFFFF; /* White background */
     -fx-text-fill: #000000; /* Black text color */
-    -fx-border-color: #000000; /* Black border color */
-    -fx-border-width: 2; /* Border width */
-    -fx-border-radius: 10; /* Rounded corners */
+    -fx-border-radius: 100; /* Rounded corners */
     -fx-font-size: 10.0pt;
     -fx-background-insets:2,0,0;
 }
