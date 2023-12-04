@@ -534,24 +534,24 @@ public class Main extends Application {
 //==================== Error Page ======================================
     public void errorPage(Stage stage)
     {
-        Label errormsg = new Label("No Matches - Please revive your query and try again! ");
-
-        //Menu bar
+    	Label errormsg = new Label("No Matches - Please revive your query and try again! ");
+    	
+    	//Menu bar
         MenuBar mb = new MenuBar();
-
+        
         // Home Menu
         Label label = new Label("Home");
         label.setOnMouseClicked(event->
         {
-            start(stage);
+        	start(stage);
         });
         Menu home = new Menu("", label);
-        // create the equipments menu
+		// create the equipments menu
         Menu equipment = new Menu("Equipment");
         MenuItem item1 = new MenuItem("Illuminator");
         MenuItem item2 = new MenuItem("Small Animal immobilizers");
         equipment.getItems().addAll(item1,item2);
-
+       
         // create supplies menu
         Menu supplies = new Menu("Supplies");
         MenuItem item3 = new MenuItem("Lead Apron");
@@ -563,38 +563,38 @@ public class Main extends Application {
         MenuItem item5 = new MenuItem("Collimator");
         MenuItem item6 = new MenuItem("MRI");
         parts.getItems().addAll(item5, item6);
-
+        
         //Order Policy
         Label label1 = new Label("Order Policy");
         Menu policy = new Menu("", label1);
         label1.setOnMouseClicked(event->
         {
-            openLink("http://www.pnwx.com/Buy/");
+        	openLink("http://www.pnwx.com/Buy/");
         });
         //===============Display products from menu=================
         item1.setOnAction(event->{
-            getProductPage("illuminators.txt" , stage);
+        	getProductPage("illuminators.txt" , stage);
         });
         item2.setOnAction(event->{
-            getProductPage("immobilizer.txt" , stage);
+        	getProductPage("immobilizer.txt" , stage);
         });
         item3.setOnAction(event->{
-            getProductPage("full_overlap_apron.txt" , stage);
+        	getProductPage("full_overlap_apron.txt" , stage);
         });
         item4.setOnAction(event->{
-            getProductPage("glove.txt" , stage);
+        	getProductPage("glove.txt" , stage);
         });
         item5.setOnAction(event->{
-            getProductPage("collimator.txt" , stage);
+        	getProductPage("collimator.txt" , stage);
         });
         item6.setOnAction(event->{
-            getProductPage("MRI.txt", stage);
+        	getProductPage("MRI.txt", stage);
         });
-
+       
         mb.getMenus().addAll(home, equipment, supplies, parts, policy);
         //mb.setPadding(new Insets(10));
         mb.setStyle("-fx-padding: 10 60 10 60;");
-
+        
         Label name = new Label("Pacific North West X-Ray INC");
         name.getStyleClass().add("label-name");
         TextField search = new TextField();
@@ -613,51 +613,47 @@ public class Main extends Application {
         searchButton.setPrefHeight(55);
         searchButton.setMaxWidth(100);
         searchButton.getStyleClass().add("button-search");
-
+        
         searchButton.setOnAction(event ->
         {
-            String userInput = search.getText().toLowerCase();
-            if (userInput.contains("apron")) {
-                getProductPage("full_overlap_apron.txt" , stage);
-            } else if (userInput.contains("mri"))
-            {
-                getProductPage("MRI.txt" , stage);
-            } else if (userInput.contains("collimator"))
-            {
-                getProductPage("collimator.txt" , stage);
-            } else if (userInput.contains("glove"))
-            {
-                getProductPage("glove.txt" , stage);
-            } else if (userInput.contains("illuminator"))
-            {
-                getProductPage("illuminators.txt" , stage);
-            } else if (userInput.contains("small animal immobilizer"))
-            {
-                getProductPage("immobilizer.txt" , stage);
-            }	else
-            {
-                errorPage(stage);
-            }
-
+        	String userInput = search.getText().toLowerCase();
+        	 if (userInput.contains("apron")) {
+        		 getProductPage("full_overlap_apron.txt" , stage);
+             } else if (userInput.contains("mri"))
+             {
+            	 getProductPage("MRI.txt" , stage);
+             } else if (userInput.contains("collimator"))
+             {
+            	 getProductPage("collimator.txt" , stage);
+             } else if (userInput.contains("glove"))
+             {
+            	 getProductPage("glove.txt" , stage);
+             } else if (userInput.contains("illuminator"))
+             {
+            	 getProductPage("illuminators.txt" , stage);
+             } else if (userInput.contains("small animal immobilizer"))
+             {
+            	 getProductPage("immobilizer.txt" , stage);
+             }	else
+             {
+            	 errorPage(stage);
+             }
+ 
         });
-
-        HBox hbox1 = new HBox(mb);
-        hbox1.setAlignment(Pos.CENTER);
-
-        VBox vbox1 = new VBox(5, errormsg, searchBox);
-        vbox1.setAlignment(Pos.CENTER);
-        //Scene scene = new Scene(vbox3);
+        
         BorderPane borderPane = new BorderPane();
         borderPane.setTop(mb);
-        borderPane.setLeft(vbox1);
-        Scene scene = new Scene(borderPane);
+        VBox vbox = new VBox(20, searchBox, errormsg);
+        vbox.setAlignment(Pos.CENTER);
+        VBox vbox1 = new VBox(10, borderPane,vbox);
+        Scene scene = new Scene(vbox1);
         stage.setScene(scene);
-        //stage.setFullScreen(true);
+        scene.getStylesheets().add(getClass().getResource("Styling.css").toExternalForm());
+        stage.setFullScreen(true);
         stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);  // ctrl esc
         stage.setResizable(true);
-
-
-    }
+        stage.show();
+        }
 
 
     //======================== Open Details Page for a Specified Product ==============================
