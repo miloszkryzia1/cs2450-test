@@ -174,6 +174,12 @@ public class Main extends Application {
         images[2] = new Image ("file:src/application/images/illuminator.png", 260, 200, false, false);
         images[3] = new Image("file:src/application/images/collimator.png", 260, 200, false, false);
         ImageView imageView = new ImageView(images[0]);
+        // Link to appropriate product
+        imageView.setOnMouseClicked(event ->{
+        	String pName = imageView.getImage().getUrl();
+        	String filename = pName.split("/")[pName.split("/").length - 1].replace("png", "txt");
+        	getProductPage(filename, stage);
+        });
         // set the preserveRatio to true
         imageView.setPreserveRatio(true);
 
