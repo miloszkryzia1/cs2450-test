@@ -67,7 +67,7 @@
     -fx-background-insets:2,0,0;
 }
 .button:hover {
-    -fx-background-color: black; /* New color when hovering, adjust as needed */
+    -fx-background-color: #589169; /* New color when hovering, adjust as needed */
     -fx-text-fill: white; /* Text color when hovering */
     -fx-background-insets: 2,0,0; /* Optional: Adds a 1-pixel border when hovering */
     -fx-cursor: hand; /* Optional: Changes cursor to hand when hovering */
