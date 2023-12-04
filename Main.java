@@ -82,7 +82,7 @@ public class Main extends Application {
         parts.getItems().addAll(item5, item6);
         
         //Order Policy
-        Label label1 = new Label("Policy");
+        Label label1 = new Label("Order Policy");
         Menu policy = new Menu("", label1);
         label1.setOnMouseClicked(event->
         {
@@ -310,9 +310,7 @@ public class Main extends Application {
         // return the vbox, FIX LATER
         return homeBp;
     }
-
-
-    //================================== Product Page ==============================
+//================================== Product Page ==============================
 
     static String pTitle = null;
     /**
@@ -365,7 +363,7 @@ public class Main extends Application {
         parts.getItems().addAll(item5, item6);
 
         //Order Policy
-        Label label1 = new Label("Policy");
+        Label label1 = new Label("Order Policy");
         Menu policy = new Menu("", label1);
         label1.setOnMouseClicked(event->
         {
@@ -443,47 +441,86 @@ public class Main extends Application {
         {
             openLink("http://www.pnwx.com/PNWX-OrderForm.pdf");
         });
-        //============================Products' page Layout===================================
+        //============================Search Bar==============================================
+        // search bar area
+        Label name = new Label("Pacific North West X-Ray INC");
+        name.getStyleClass().add("label-name");
+        TextField search = new TextField();
+        Button searchButton = new Button("Go!");
+        HBox searchBox = new HBox(name, search, searchButton);
+        searchBox.setAlignment(Pos.CENTER);
+        searchBox.setSpacing(10);
+        searchBox.setPadding(new Insets(30,0,0, 0));
 
-		HBox buttonBox = new HBox(20, p_details, buy_button);
+        search.setPromptText("Search");
+        search.setPrefWidth(650);
+        search.setPrefHeight(50);
+        search.setMaxWidth(500);
+        search.getStyleClass().add("search-bar");
+        
+        // textField testing
+        searchButton.setOnAction(event ->
+        {
+        	String userInput = search.getText().toLowerCase();
+        	 if (userInput.contains("apron")) {
+        		 getProductPage("full_overlap_apron.txt" , stage);
+             } else if (userInput.contains("mri"))
+             {
+            	 getProductPage("MRI.txt" , stage);
+             } else if (userInput.contains("collimator"))
+             {
+            	 getProductPage("collimator.txt" , stage);
+             } else if (userInput.contains("glove"))
+             {
+            	 getProductPage("glove.txt" , stage);
+             } else if (userInput.contains("illuminator"))
+             {
+            	 getProductPage("illuminators.txt" , stage);
+             } else if (userInput.contains("small animal immobilizer"))
+             {
+            	 getProductPage("immobilizer.txt" , stage);
+             }	else
+             {
+            	 errorPage(stage);
+             }
+ 
+        });
+        searchButton.setPickOnBounds(true);
+        searchButton.setPrefHeight(55);
+        searchButton.setMaxWidth(100);
+        searchButton.getStyleClass().add("button-search");
+    //============================Products' page Layout===================================
+        HBox buttonBox = new HBox(20, p_details, buy_button);
 		buttonBox.setAlignment(Pos.CENTER);
-		VBox vbox1 = new VBox(20, pDescText, buttonBox);
-		vbox1.setAlignment(Pos.TOP_RIGHT);
 		Pane pane = new Pane(pImgView);
-		HBox hbox1 = new HBox(20, pane, vbox1);
-		//HBox hbox1 = new HBox(20, pImgView, vbox1);
-		hbox1.setAlignment(Pos.CENTER);
+		GridPane gridPane = new GridPane();
+		gridPane.add(pane, 0 , 0);
+		gridPane.add(pDescText, 1,0);
+		gridPane.add(buttonBox, 1, 1);
+		gridPane.setAlignment(Pos.CENTER);
+		gridPane.setHgap(30);
 		Label warning = new Label("Please read order policy before placing the order.");
 		warning.setStyle("fx-font-size: 14pt;-fx-font-weight: bold");
 		Separator separator = new Separator(Orientation.HORIZONTAL);
-		VBox vbox2 = new VBox(20, pTitleLabel, hbox1, separator,warning);
-		vbox2.setAlignment(Pos.CENTER);
-		//VBox vbox3 = new VBox(25,mb, vbox2);
-		//vbox3.setAlignment(Pos.TOP_LEFT);
-		//HBox hbox = new HBox(30, pImgView, pDescText);
-		//VBox vbox = new VBox(20, pTitleLabel, hbox);
-		
-		
-		//Scene scene = new Scene(vbox3);
+		VBox vbox1 = new VBox(20, searchBox,pTitleLabel,gridPane, separator, warning);
+		vbox1.setAlignment(Pos.CENTER);
 		BorderPane borderPane = new BorderPane();
 		borderPane.setTop(mb);
-		borderPane.setLeft(vbox2);
-		Scene scene = new Scene(borderPane);
+		VBox vbox2 = new VBox(10, borderPane, vbox1);
+		//borderPane.setCenter(vbox1);
+		Scene scene = new Scene(vbox2);
 		scene.getStylesheets().add(getClass().getResource("Styling.css").toExternalForm());
 		stage.setScene(scene);
 		stage.setFullScreen(true);
 		stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);  // ctrl esc
         stage.setResizable(true);
     }
-
-    //======================== Open Link Method==============================
+//======================== Open Link Method==============================
     private void openLink(String url) {
         HostServices hostServices = getHostServices();
         hostServices.showDocument(url);
     }
-
-
-    //==================== Error Page ======================================
+//==================== Error Page ======================================
     public void errorPage(Stage stage)
     {
     	Label errormsg = new Label("No Matches - Please revive your query and try again! ");
@@ -492,7 +529,6 @@ public class Main extends Application {
         MenuBar mb = new MenuBar();
         
         // Home Menu
-
         Label label = new Label("Home");
         label.setOnMouseClicked(event->
         {
@@ -518,7 +554,7 @@ public class Main extends Application {
         parts.getItems().addAll(item5, item6);
         
         //Order Policy
-        Label label1 = new Label("Policy");
+        Label label1 = new Label("Order Policy");
         Menu policy = new Menu("", label1);
         label1.setOnMouseClicked(event->
         {
@@ -562,6 +598,10 @@ public class Main extends Application {
         search.setPrefHeight(58);
         search.setMaxWidth(600);
         search.getStyleClass().add("search-bar");
+        searchButton.setPickOnBounds(true);
+        searchButton.setPrefHeight(55);
+        searchButton.setMaxWidth(100);
+        searchButton.getStyleClass().add("button-search");
         
         searchButton.setOnAction(event ->
         {
@@ -590,23 +630,19 @@ public class Main extends Application {
  
         });
         
-        HBox hbox1 = new HBox(mb);
-        hbox1.setAlignment(Pos.CENTER);
-
-		VBox vbox1 = new VBox(5, errormsg, searchBox);
-		vbox1.setAlignment(Pos.CENTER);
-		//Scene scene = new Scene(vbox3);
-		BorderPane borderPane = new BorderPane();
-		borderPane.setTop(mb);
-		borderPane.setLeft(vbox1);
-		Scene scene = new Scene(borderPane);
-		stage.setScene(scene);
-		//stage.setFullScreen(true);
-		stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);  // ctrl esc
+        BorderPane borderPane = new BorderPane();
+        borderPane.setTop(mb);
+        VBox vbox = new VBox(20, searchBox, errormsg);
+        vbox.setAlignment(Pos.CENTER);
+        VBox vbox1 = new VBox(10, borderPane,vbox);
+        Scene scene = new Scene(vbox1);
+        stage.setScene(scene);
+        scene.getStylesheets().add(getClass().getResource("Styling.css").toExternalForm());
+        stage.setFullScreen(true);
+        stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);  // ctrl esc
         stage.setResizable(true);
-        
-        
-    }
+        stage.show();
+        }
 
   //======================== Open Details Page for a Specified Product ==============================
     public void getDetailsPage(String filename, String productName, Scene previousScene, Stage stage) {
@@ -641,7 +677,7 @@ public class Main extends Application {
         parts.getItems().addAll(item5, item6);
         
         //Order Policy
-        Label label1 = new Label("Policy");
+        Label label1 = new Label("Order Policy");
         Menu policy = new Menu("", label1);
         label1.setOnMouseClicked(event->
         {
