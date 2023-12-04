@@ -178,6 +178,9 @@ public class Main extends Application {
         imageView.setOnMouseClicked(event ->{
         	String pName = imageView.getImage().getUrl();
         	String filename = pName.split("/")[pName.split("/").length - 1].replace("png", "txt");
+        	if (filename.equals("illuminator.txt")) { 
+        		filename = "illuminators.txt";
+        	}
         	getProductPage(filename, stage);
         });
         // set the preserveRatio to true

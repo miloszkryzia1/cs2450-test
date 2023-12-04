@@ -59,13 +59,20 @@
 
 .button {
     -fx-min-width: 5em; /* Base width of the button */
-    -fx-background-color: linear-gradient(to bottom, #cccccc, #999999);
     -fx-min-height: 3em; /* Base height of the button */
     -fx-background-color: #FFFFFF; /* White background */
     -fx-text-fill: #000000; /* Black text color */
     -fx-border-radius: 100; /* Rounded corners */
     -fx-font-size: 10.0pt;
     -fx-background-insets:2,0,0;
+}
+.button:hover {
+    -fx-background-color: black; /* New color when hovering, adjust as needed */
+    -fx-text-fill: white; /* Text color when hovering */
+    -fx-background-insets: 2,0,0; /* Optional: Adds a 1-pixel border when hovering */
+    -fx-cursor: hand; /* Optional: Changes cursor to hand when hovering */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 10, 0, 0, 0); /* Optional: Adds a drop shadow when hovering */
+    -fx-transition: background-color 0.3s, text-fill 0.3s; /* Optional: Smooth transition over 0.3 seconds */
 }
 
 .menu-bar {
