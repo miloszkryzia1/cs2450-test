@@ -84,6 +84,7 @@ public class Main extends Application {
         //Order Policy
         Label label1 = new Label("Policy");
         Menu policy = new Menu("", label1);
+
         label1.setOnMouseClicked(event->
         {
             openLink("http://www.pnwx.com/Buy/");
@@ -164,26 +165,27 @@ public class Main extends Application {
         // most popular section
         Label mostPopular = new Label("Most Popular");
         mostPopular.setStyle("-fx-text-fill: black; -fx-font-size: 20;");
-        // create an array of product images
+        // create an array of image objects with four images from the application folder
         Image[] images = new Image[4];
-        images[0] = new Image("file:src/application/images/glove.png");
-        images[1] = new Image("file:src/application/images/illuminator.png");
-        images[2] = new Image ("file:src/application/images/immobilizer.png");
-        images[3] = new Image("file:src/application/images/collimator.png");
+        // resize the images to 300 by 200 when loading them
+        // false, false = parameters for smooth and background loading. if set to true, the images move the bottom buttons
+        images[0] = new Image("file:src/application/images/glove.png", 260, 200, false, false);
+        images[1] = new Image("file:src/application/images/immobilizer.png", 260, 200, false, false);
+        images[2] = new Image ("file:src/application/images/illuminator.png", 260, 200, false, false);
+        images[3] = new Image("file:src/application/images/collimator.png", 260, 200, false, false);
         ImageView imageView = new ImageView(images[0]);
-        imageView.setFitWidth(300);
-        imageView.setFitHeight(200);
+        // set the preserveRatio to true
         imageView.setPreserveRatio(true);
 
+        // create the anchorPane, allows positioning its children at arbitrary locations
+        AnchorPane mostPopularSection = new AnchorPane();
         // most popular label
         AnchorPane.setTopAnchor(mostPopular,40.0);
-        AnchorPane.setLeftAnchor(mostPopular,690.0);
-        // create the anchorPane
-        AnchorPane mostPopularSection = new AnchorPane();
+        AnchorPane.setLeftAnchor(mostPopular,710.0);
 
         // set contraints for imageView
         AnchorPane.setTopAnchor(imageView, 80.0);
-        AnchorPane.setLeftAnchor(imageView, 630.0);
+        AnchorPane.setLeftAnchor(imageView, 650.0);
 
         // create buttons on each side of the image
         Button leftButton = new Button("<");
@@ -194,8 +196,10 @@ public class Main extends Application {
         AnchorPane.setTopAnchor(leftButton, 150.0);
         AnchorPane.setLeftAnchor(leftButton, 520.0);
         AnchorPane.setTopAnchor(rightButton, 150.0);
-        AnchorPane.setRightAnchor(rightButton, 560.0);
+        AnchorPane.setRightAnchor(rightButton, 510.0);
 
+        // changes the currentIndex variable and sets the image view to the new image
+        // wraps around the index if it goes out of bounds, so the images are displayed in a circular order
         leftButton.setOnAction(event -> {
             // Decrement the current index
             currentIndex--;
@@ -217,21 +221,22 @@ public class Main extends Application {
             // Set the image view to the new image
             imageView.setImage(images[currentIndex]);
         });
-        // create a hbox for the images]\
+
         mostPopularSection.getChildren().addAll(mostPopular, rightButton, imageView, leftButton);
 
         // browse all products section
         Label browse = new Label("Browse all products");
-        //HBox browseBox = new HBox(browse);
-        //browseBox.setAlignment(Pos.CENTER);
         browse.setAlignment(Pos.CENTER);
         browse.setPadding(new Insets(80,0,0,0));
         browse.setStyle("-fx-font-size: 20; -fx-text-fill: black");
 
         VBox firstRow = new VBox();
+
+        // create two imageView objects for the first column
         ImageView leadApron = new ImageView(new Image("file:src/application/images/full_overlap_apron.png"));
         leadApron.setFitWidth(100);
         leadApron.setFitHeight(100);
+        // images will maintain their original aspect ratio when resized
         imageView.setPreserveRatio(true);
 
         ImageView mediumMRI = new ImageView(new Image("file:src/application/images/MRI.png"));
@@ -239,6 +244,7 @@ public class Main extends Application {
         mediumMRI.setFitHeight(100);
         imageView.setPreserveRatio(true);
 
+        // create buttons with text, labels do not have set on action so choose buttons
         Button lead = new Button("Lead Aprons");
         lead.getStyleClass().add("browse-lead");
         lead.setStyle("-fx-background-color: transparent");
@@ -260,6 +266,7 @@ public class Main extends Application {
         firstRow.setSpacing(15);
         firstRow.setAlignment(Pos.CENTER);
 
+        // second column of the browse all products
         VBox secondRow = new VBox();
         // third image
         ImageView gloveImage = new ImageView(new Image("file:src/application/images/glove.png"));
@@ -284,8 +291,6 @@ public class Main extends Application {
         smallAnimalButton.setOnAction(event->{
             getProductPage("immobilizer.txt", stage);
         });
-
-
         radiationGloves.getStyleClass().add("browse-gloves");
         radiationGloves.setStyle("-fx-background-color: transparent");
         smallAnimalButton.getStyleClass().add("browse-animal");
@@ -301,25 +306,19 @@ public class Main extends Application {
         storeVBox.setSpacing(150);
         //storeVBox.setPadding(new Insets(10,0, 30, 0));
 
-
-        Image img = new Image("file:src/application/images/background.jpeg");
-        BackgroundSize bgSize = new BackgroundSize(100, 100, true, true, true, true);
-        BackgroundImage bgImg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bgSize);
-
-        VBox testing = new VBox(mb, searchBox, mostPopularSection, browse);
-        testing.setAlignment(Pos.CENTER);
+        // put menu bar, search box, most popular section and the browse lable in  a vbox
+        VBox top = new VBox(mb, searchBox, mostPopularSection, browse);
+        top.setAlignment(Pos.CENTER);
 
         BorderPane homeBp = new BorderPane();
-        homeBp.setTop(testing);
-        //home.setTop(searchBox);
+        homeBp.setTop(top);
+        // set the browse section at the bottom
         homeBp.setBottom(storeVBox);
-        homeBp.setBackground(new Background(bgImg));
 
         homeBp.getStyleClass().add("root");
 
 
-        // return the vbox, FIX LATER
+        // return the borderPane
         return homeBp;
     }
 
